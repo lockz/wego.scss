@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+
+/**
+*	Get font-family by type.
+*/
+@function font($type) {
+	@if map-has-key($fonts, $type) {
+		@return map-get($fonts, $type);
+	}
+
+	@warn "Unknown font type `#{$type}`";
+
+	@return null;
+}
+
+
+/**
+*	Get color from config color array.
+*/
+@function color($type) {
+	@if map-has-key($colors, $type) {
+		@return map-get($colors, $type);
+	}
+
+	@warn "Unknown color `#{$type}`";
+
+	@return null;
+}
+
+
+/**
+*	Get override of type.
+*/
+@function override($type) {
+	@if map-has-key($overrides, $type) {
+		@return map-get($overrides, $type);
+	}
+
+	@warn "Unknown ui type `#{$type}`";
+
+	@return null;
+}
+
+
+/**
+*	Get UI size.
+*/
+@function ui-size($size) {
+	@if map-has-key($ui-sizes, $size) {
+		@return map-get($ui-sizes, $size);
+	}
+
+	@warn "Unknown ui size `#{$size}`";
+
+	@return null;
+}
+
+
+/**
+*	Get material color.
+*/
+@function material-color($color, $accent) {
+	$color: to-lower-case($color);
+	$accent: to-lower-case($accent);
+	@if map-has-key($material-colors, $color) {
+		$m-color: map-get($material-colors, $color);
+		@if map-has-key($m-color, $accent) {
+			@return map-get($m-color, $accent);
+		}
+		@warn "Unknown accent `#{$accent}`";
+	} @else {
+		@warn "Unknown color `#{$color}`";
+	}
+	@return null;
+}
+
+
+/**
+*	Вычисление внутреннего отступа для UI.
+*	@param int $ui-height Размер UI элемента в пикселях.
+*	@param int $font-size Размер шрифта в пикселях.
+*	@param float $modificator Модификатор горизонтального отступа (от 0.1 - 1.0, по умолчанию 0.25).
+*	@param bool $vertical-only Флаг возврата только вертикальных отступов (по умолчанию false).
+*	@return css Отступы в пикселях.
+*/
+@function calc-padding($ui-height, $font-size, $modificator: .25, $vertical-only: false) {
+	$vertical: floor(($ui-height - $font-size) / 2) - 1;
+	$horizontal: floor($ui-height * $modificator);
+	@if $vertical-only {
+		@return $vertical;
+	} @else {
+		@return $vertical $horizontal;
+	}
+}
+
+
+/**
+*	Вычисление размера шрифта для UI.
+*	@param int $ui-height Размер UI элемента в пикселях.
+*	@param float $modificator Модификатор размера шрифта (от 0.1 - 1.0, по умолчанию 0.4).
+*	@return int Размер шрифта в пикселях.
+*/
+@function calc-font-size($ui-height, $modificator: .4) {
+	$font-size: floor($ui-height * $modificator);
+	@return $font-size;
+}

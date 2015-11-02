@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/**
+*	Table frame.
+*/
+%table-frame {
+	margin: 20px 0;
+	width: 100%;
+	border-collapse: collapse;
+	th {
+		padding: 12px;
+		font-size: $font-size + 1px;
+		font-family: font('medium');
+	}
+	td {
+		padding: 10px 12px;
+	}
+}
+
+
+/**
+*	Table.
+*/
+table {
+	@if (override('table')) {
+		@include ui-table();
+	} @else {
+		@extend %table-frame;
+		thead th {
+			background-color: darken(#fff, 5%);
+			border-bottom: 2px solid darken(#fff, 12%);
+		}
+		tbody tr {
+			@include transition(background-color $transition-duration $ease-out);
+			&:hover {
+				background-color: darken(#fff, 5%) !important;
+				@include transition(none);
+			}
+		}
+		&.stripped {
+			tbody tr:nth-of-type(even) {
+				background-color: darken(#fff, 3%);
+			}
+		}
+		&.bordered {
+			thead th {
+				border: 1px solid darken(#fff, 12%);
+				border-bottom-width: 2px;
+			}
+			th, td {
+				border: 1px solid darken(#fff, 12%);
+			}
+		}
+	}
+}

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+
+/**
+*	Уведомления.
+*/
+.notice {
+	position: relative;
+	margin-bottom: $grid-gutter;
+	padding: 20px 20px 20px 55px;
+	line-height: 1.5;
+	color: #fff;
+	background-color: color('font');
+
+	&:before {
+		position: absolute;
+		top: 50%;
+		left: 20px;
+		margin-top: -12px;
+		font-size: 24px;
+		font-family: 'FontAwesome';
+		line-height: 1;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&._error {
+		background-color: color('error');
+
+		&:before {
+			content: '\f057';
+		}
+	}
+
+	&._success {
+		background-color: color('success');
+
+		&:before {
+			content: '\f058';
+		}
+	}
+
+	&._warning {
+		background-color: color('warning');
+
+		&:before {
+			content: '\f06a';
+		}
+	}
+
+	&._info {
+		background-color: color('info');
+
+		&:before {
+			content: '\f05a';
+		}
+	}
+
+	a {
+		color: #fff;
+		border-bottom: 1px dashed #fff;
+
+		&:hover {
+			text-decoration: none;
+			border-bottom-style: solid;
+		}
+	}
+}

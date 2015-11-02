@@ -1,0 +1,264 @@
+@charset "UTF-8";
+
+
+/**
+*	General.
+*/
+* {
+	// Default box size behaviour
+	@include box-sizing(border-box);
+}
+
+html {
+	// Snap footer fix
+	height: 100%;
+	// end Snap footer fix
+}
+
+body {
+	// Snap footer fix
+	position: relative;
+	min-height: 100%;
+	// end Snap footer fix
+
+	font-size: $font-size;
+	font-family: font('regular'), Arial; // Webfont render fix (roboto)
+	color: color('font');
+	background-color: color('background');
+}
+
+:focus {
+	// Disabling outline on webkit
+	outline: none;
+}
+
+
+/**
+*	Selection (only separately!).
+*/
+::selection {
+	color: color('background');
+	background: color('selection');
+}
+
+::-moz-selection {
+	color: color('background');
+	background: color('selection');
+}
+
+
+/**
+*	Placeholder (only separately!).
+*/
+::-webkit-input-placeholder {
+	// Fold
+	color: color('mute');
+}
+
+:-moz-placeholder {
+	// Fold
+	color: color('mute');
+}
+
+::-moz-placeholder {
+	// Fold
+	color: color('mute');
+}
+
+:-ms-input-placeholder {
+	color: color('mute');
+	opacity: 1;
+}
+
+
+/**
+*	Wrapper.
+*/
+.wrapper {
+	margin: 0 auto;
+	@each $size, $width in $screens {
+		@if $width == auto {
+			@include respond-to($size) {
+				margin: 0;
+				padding: 0 ($grid-gutter / 2);
+				width: 100%;
+			}
+		} @else {
+			@include respond-to($size) {
+				width: $width;
+			}
+		}
+	}
+}
+
+
+/**
+*	Clear.
+*/
+.clear {
+	// Fold
+	@include clearfix();
+}
+
+
+/**
+*	Visibility.
+*/
+.hidden {
+	// Fold
+	display: none;
+}
+
+@each $size, $width in $screens {
+	.visible-#{$size} {
+		@each $id, $max_width in $screens {
+			@if $size == $id {
+				@include respond-to($id) {
+					display: inherit !important;
+				}
+			} @else {
+				@include respond-to($id) {
+					display: none !important;
+				}
+			}
+		}
+	}
+	.hidden-#{$size} {
+		@include respond-to($size) {
+			display: none !important;
+		}
+	}
+}
+
+
+/**
+*	Z-depth.
+*/
+@for $i from 0 through 5 {
+	// Deprecated
+	.z-depth-#{$i} {
+		@include z-depth($i);
+	}
+
+	._depth-#{$i} {
+		@include z-depth($i);
+	}
+}
+
+
+/**
+*	Layer.
+*/
+.layer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+	background-color: rgba(color('background'), .9);
+	&._transparent {
+		background-color: transparent;
+	}
+	.wrapper {
+		height: 100%;
+	}
+}
+
+.layer-close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	display: block;
+	font-size: 50px;
+	color: color('font');
+	@include transition(all $transition-duration);
+	&:hover {
+		text-decoration: none;
+		@include transform(rotate(90deg));
+	}
+}
+
+.layer-spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -25px;
+	margin-left: -25px;
+	width: 50px;
+	height: 50px;
+	background-color: color('font');
+	&.active,
+	&._active {
+		@include animation-rotateplane();
+	}
+}
+
+
+/**
+*	Модификаторы отступов.
+*/
+@mixin make-indents($screen: '') {
+	@if $screen != '' {
+		$screen: '-' + $screen;
+	}
+
+	@for $i from 1 through $intends-multiplier {
+		$gutter: $i * $grid-gutter;
+		$postfix: $screen;
+
+		@if $i > 1 {
+			$postfix: $postfix + '-#{$i}x';
+		}
+
+		._mt#{$postfix} {
+			margin-top: $gutter !important;
+		}
+
+		._mb#{$postfix} {
+			margin-bottom: $gutter !important;
+		}
+
+		._mr#{$postfix} {
+			margin-right: $gutter !important;
+		}
+
+		._ml#{$postfix} {
+			margin-left: $gutter !important;
+		}
+
+		._pt#{$postfix} {
+			padding-top: $gutter !important;
+		}
+
+		._pb#{$postfix} {
+			padding-bottom: $gutter !important;
+		}
+
+		._pr#{$postfix} {
+			padding-right: $gutter !important;
+		}
+
+		._pl#{$postfix} {
+			padding-left: $gutter !important;
+		}
+	}
+}
+
+@include make-indents();
+
+@include respond-to(lg) {
+	@include make-indents(lg);
+}
+
+@include respond-to(md) {
+	@include make-indents(md);
+}
+
+@include respond-to(sm) {
+	@include make-indents(sm);
+}
+
+@include respond-to(xs) {
+	@include make-indents(xs);
+}

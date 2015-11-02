@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+
+/**
+*	Базовый класс для text, textarea, select.
+*/
+%input {
+	$ui-height: ui-size('medium');
+	$font-size: calc-font-size($ui-height);
+	display: inline-block;
+	margin: 0; // Reset default
+	padding: calc-padding($ui-height, $font-size);
+	width: 100%; // Reset default
+	height: $ui-height;
+	font-size: $font-size;
+	line-height: normal;
+	vertical-align: middle;
+	border: none; // Reset default
+
+	&:disabled, &[disabled], &._disabled {
+		cursor: not-allowed;
+	}
+
+	@each $name, $ui-height in $ui-sizes {
+		&._#{$name} {
+			$font-size: calc-font-size($ui-height);
+			padding: calc-padding($ui-height, $font-size);
+			height: $ui-height;
+			font-size: $font-size;
+		}
+	}
+}
+
+
+/**
+*	Input default class.
+*/
+%input-default {
+	@extend %input;
+	padding-left: 0;
+	padding-right: 0;
+	font-family: font('regular');
+	background: transparent;
+	border-bottom: 1px solid #c8c8c8;
+
+	&:focus {
+		$ui-height: ui-size('medium');
+		$font-size: calc-font-size($ui-height);
+		padding-bottom: calc-padding($ui-height, $font-size, .25, true) - 1;
+		border-bottom: 2px solid color('primary');
+	}
+
+	&:disabled, &[disabled], &._disabled {
+		color: color('mute');
+		border-bottom-style: dashed;
+	}
+
+	@each $name, $ui-height in $ui-sizes {
+		&._#{$name} {
+			padding-left: 0;
+			padding-right: 0;
+		}
+		&._#{$name}:focus {
+			$font-size: calc-font-size($ui-height);
+			padding-bottom: calc-padding($ui-height, $font-size, .25, true);
+		}
+	}
+}

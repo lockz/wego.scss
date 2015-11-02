@@ -1,0 +1,252 @@
+@charset "UTF-8";
+
+
+/**
+*	Button font size calculation.
+*/
+@function calc-button-font-size($ui-height) {
+	@return floor($ui-height * .4);
+}
+
+
+/**
+*	Button padding calculation.
+*/
+@function calc-button-padding($ui-height, $font-size) {
+	$vertical: floor(($ui-height - $font-size) / 2);
+	$horizontal: floor($ui-height * .23);
+	@return $vertical $horizontal;
+}
+
+
+/**
+*	Каркас для кнопки (универсальный не стилизованный).
+*/
+%button {
+	$ui-height: ui-size('medium');
+	$font-size: calc-button-font-size($ui-height);
+	position: relative;
+	display: inline-block;
+	margin-left: 5px;
+	padding: calc-button-padding($ui-height, $font-size);
+	min-width: 64px;
+	height: $ui-height;
+	font-size: $font-size;
+	line-height: 1; // centering fix
+	text-align: center; // inline fix
+	text-decoration: none; // inline fix
+	vertical-align: middle; // inline fix
+	border: none; // input fix
+	cursor: pointer;
+	overflow: hidden;
+
+	&:hover {
+		text-decoration: none; // inline fix
+	}
+
+	&:disabled,	&[disabled], &._disabled {
+		cursor: not-allowed;
+	}
+
+	&:first-child {
+		margin-left: 0;
+	}
+
+	@each $name, $ui-height in $ui-sizes {
+		&._#{$name} {
+			$font-size: calc-button-font-size($ui-height);
+			padding: calc-button-padding($ui-height, $font-size);
+			height: $ui-height;
+			font-size: $font-size;
+		}
+	}
+
+	@include respond-to(xs) {
+		display: block;
+		width: 100%;
+		height: auto !important;
+	}
+}
+
+
+/**
+*	Стилизация основной кнопки.
+*/
+%button-default {
+	@extend %button;
+	font-family: font('medium');
+	text-transform: uppercase;
+	color: #444444;
+	background-color: #fff;
+	overflow: hidden;
+	z-index: 1; // Web-kit overflow hidden bug avoid
+	@include border-radius(3px);
+	@include transition(all $transition-duration $ease-out);
+
+	&:hover {
+		@include z-depth(1);
+
+		@for $i from 0 through 5 {
+			&._depth-#{$i} {
+				@include z-depth($i + 1);
+			}
+		}
+	}
+
+	&:disabled,	&[disabled], &._disabled {
+		color: #a8a7a9;
+		background-color: #dfdfdf;
+		@include z-depth(0);
+
+		&:before {
+			display: none;
+		}
+
+		&:active {
+			@include z-depth(0);
+		}
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		background-color: #7e7d7e;
+		margin-top: -40px;
+		margin-left: -40px;
+		width: 80px;
+		height: 80px;
+		opacity: 0;
+		@include transform(scale(10));
+		@include transition(all 2s);
+		@include border-radius(50%);
+	}
+
+	&:active {
+		@include z-depth(0);
+
+		@for $i from 1 through 5 {
+			&._depth-#{$i} {
+				@include z-depth($i);
+			}
+		}
+
+		&:before {
+			opacity: .4;
+			@include transform(scale(.0001));
+			@include transition(0s);
+		}
+	}
+
+	&._active {
+		@include animation-progress();
+	}
+}
+
+
+/**
+*	Стайлер для кнопки.
+*/
+@mixin button($color) {
+	@if (override('button')) {
+		@include ui-button($color);
+	} @else {
+		color: #fff;
+		background-color: $color;
+
+		&:hover {
+			background-color: tint($color, 20%);
+		}
+
+		&:disabled,	&[disabled], &._disabled {
+			background-color: #dfdfdf;
+
+			&._active {
+				color: #fff;
+				background-color: tint($color, 50%);
+			}
+		}
+
+		&:before {
+			background-color: #fff;
+		}
+	}
+}
+
+.button {
+	@if (override('button')) {
+		@include ui-button-default();
+	} @else {
+		@extend %button-default;
+	}
+
+	&._primary {
+		@include button(color('primary'));
+	}
+
+	&._secondary {
+		@include button(color('secondary'));
+	}
+
+	&._success {
+		@include button(color('success'));
+	}
+
+	&._warning {
+		@include button(color('warning'));
+	}
+
+	&._error {
+		@include button(color('error'));
+	}
+
+	&._info {
+		@include button(color('info'));
+	}
+
+	&._link {
+		color: color('link');
+		background-color: transparent;
+		@include box-shadow(none !important);
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&:disabled,	&[disabled], &._disabled {
+			background-color: transparent;
+			&._active {
+				@include animation(none);
+			}
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		&:before {
+			background-color: #7e7d7e;
+		}
+
+		&.active {
+			@include animation(none);
+		}
+	}
+
+	&._float {
+		padding-left: 0;
+		padding-right: 0;
+		width: ui-size('medium');
+		min-width: 0;
+		@include border-radius(50%);
+
+		@each $name, $ui-height in $ui-sizes {
+			&._#{$name} {
+				padding-left: 0;
+				padding-right: 0;
+				width: $ui-height;
+				min-width: 0;
+			}
+		}
+	}
+}

@@ -1,0 +1,280 @@
+@charset "UTF-8";
+
+
+/**
+*	Flag label frame.
+*/
+%flag-label {
+	$ui-height: ui-size('medium');
+	position: relative;
+	display: table-cell;
+	padding-left: ($ui-height / 2) + 5;
+	height: $ui-height;
+	line-height: 1;
+	font-size: $font-size;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+
+/**
+*	Flag element frame.
+*/
+%flag-element {
+	$ui-height: ui-size('medium');
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -($ui-height / 4);
+	height: $ui-height / 2;
+	width: $ui-height / 2;
+	line-height: 1;
+	font-size: $font-size;
+	text-align: center;
+	vertical-align: middle;
+	content: "";
+}
+
+
+/**
+*	Default flag element (Off state).
+*/
+%flag-element-default {
+	@extend %flag-element;
+	$color: color('primary');
+	font-family: "Arial";
+	color: transparent;
+	//background-color: $color;
+	background-color: transparent;
+	border: 2px solid rgba(#000, .54);
+	@include transition(all $transition-duration $ease-out);
+	@include box-sizing(border-box);
+	@include border-radius(3px);
+}
+
+
+/**
+*	Checkbox label.
+*/
+@mixin checkbox-label($flag, $state) {
+	@if override('checkbox') {
+		@include ui-checkbox('label', $flag, $state);
+	} @else {
+		@if $flag == 'off' {
+			@if $state == 'default' {
+				@extend %flag-label;
+			} @else if $state == 'hover' {
+				// nope
+			} @else if $state == 'disabled' {
+				color: color('mute');
+				cursor: not-allowed;
+			}
+		} @else if $flag == 'on' {
+			@if $state == 'default' {
+				// nope
+			} @else if $state == 'hover' {
+				// nope
+			} @else if $state == 'disabled' {
+				color: color('mute');
+				cursor: not-allowed;
+			}
+		}
+	}
+}
+
+
+/**
+*	Checkbox element.
+*/
+@mixin checkbox-element($flag, $state) {
+	@if override('checkbox') {
+		@include ui-checkbox('element', $flag, $state);
+	} @else {
+		$color: color('primary');
+		content: "\2713";
+		@if $flag == 'off' {
+			@if $state == 'default' {
+				@extend %flag-element-default;
+			} @else if $state == 'hover' {
+				border-color: rgba(#000, .7);
+			} @else if $state == 'disabled' {
+				border-color: rgba(#000, .26);
+				background-color: transparent;
+			}
+		} @else if $flag == 'on' {
+			@if $state == 'default' {
+				color: #eee;
+				background-color: $color;
+				border-color: $color;
+			} @else if $state == 'hover' {
+				color: #eee;
+				border-color: tint($color, 20%);
+				background-color: tint($color, 20%);
+			} @else if $state == 'disabled' {
+				color: #eee;
+				border-color: transparent;
+				background-color: rgba(#000, .26);
+			}
+		}
+	}
+}
+
+
+/**
+*	Checkbox classes.
+*/
+.checkbox {
+	display: none;
+	// Label
+	& + label {
+		@include checkbox-label('off', 'default');
+	}
+	&:checked + label {
+		@include checkbox-label('on', 'default');
+	}
+	& + label:hover {
+		@include checkbox-label('off', 'hover');
+	}
+	&:checked + label:hover {
+		@include checkbox-label('on', 'hover');
+	}
+	&:disabled + label,	&[disabled] + label, &.disabled + label {
+		@include checkbox-label('off', 'disabled');
+	}
+	&:disabled:checked + label,	&[disabled]:checked + label, &.disabled:checked + label {
+		@include checkbox-label('on', 'disabled');
+	}
+	// Element
+	& + label:before {
+		@include checkbox-element('off', 'default');
+	}
+	&:checked + label:before {
+		@include checkbox-element('on', 'default');
+	}
+	& + label:hover:before {
+		@include checkbox-element('off', 'hover');
+	}
+	&:checked + label:hover:before {
+		@include checkbox-element('on', 'hover');
+	}
+	&:disabled + label:before, &[disabled] + label:before, &.disabled + label:before {
+		@include checkbox-element('off', 'disabled');
+	}
+	&:checked:disabled + label:before, &[disabled]:checked + label:before, &.disabled:checked + label:before {
+		@include checkbox-element('on', 'disabled');
+	}
+}
+
+
+/**
+*	Radio label.
+*/
+@mixin radio-label($flag, $state) {
+	@if override('radio') {
+		@include ui-radio('label', $flag, $state);
+	} @else {
+		@if $flag == 'off' {
+			@if $state == 'default' {
+				@extend %flag-label;
+			} @else if $state == 'hover' {
+				// nope
+			} @else if $state == 'disabled' {
+				color: color('mute');
+				cursor: not-allowed;
+			}
+		} @else if $flag == 'on' {
+			@if $state == 'default' {
+				// nope
+			} @else if $state == 'hover' {
+				// nope
+			} @else if $state == 'disabled' {
+				color: color('mute');
+				cursor: not-allowed;
+			}
+		}
+	}
+}
+
+
+/**
+*	Radio element.
+*/
+@mixin radio-element($flag, $state) {
+	@if override('radio') {
+		@include ui-radio('element', $state);
+	} @else {
+		$color: color('primary');
+		content: "\25CF";
+		font-size: 21px;
+		line-height: 12px;
+		@include border-radius(50%);
+		@if $flag == 'off' {
+			@if $state == 'default' {
+				@extend %flag-element-default;
+			} @else if $state == 'hover' {
+				border-color: rgba(#000, .7);
+			} @else if $state == 'disabled' {
+				border-color: rgba(#000, .26);
+				background-color: transparent;
+			}
+		} @else if $flag == 'on' {
+			@if $state == 'default' {
+				color: $color;
+				background-color: transparent;
+				border-color: $color;
+			} @else if $state == 'hover' {
+				color: tint($color, 20%);;
+				border-color: tint($color, 20%);
+			} @else if $state == 'disabled' {
+				color: rgba(#000, .26);
+				border-color: rgba(#000, .26);
+			}
+		}
+	}
+}
+
+
+/**
+*	Radio classes.
+*/
+.radio {
+	display: none;
+	// Label
+	& + label {
+		@include radio-label('off', 'default');
+	}
+	&:checked + label {
+		@include radio-label('on', 'default');
+	}
+	& + label:hover {
+		@include radio-label('off', 'hover');
+	}
+	&:checked + label:hover {
+		@include radio-label('on', 'hover');
+	}
+	&:disabled + label,	&[disabled] + label, &.disabled + label {
+		@include radio-label('off', 'disabled');
+	}
+	&:disabled:checked + label,	&[disabled]:checked + label, &.disabled:checked + label {
+		@include radio-label('on', 'disabled');
+	}
+	// Element
+	& + label:before {
+		@include radio-element('off', 'default');
+	}
+	&:checked + label:before {
+		@include radio-element('on', 'default');
+	}
+	& + label:hover:before {
+		@include radio-element('off', 'hover');
+	}
+	&:checked + label:hover:before {
+		@include radio-element('on', 'hover');
+	}
+	&:disabled + label:before, &[disabled] + label:before, &.disabled + label:before {
+		@include radio-element('off', 'disabled');
+	}
+	&:checked:disabled + label:before, &[disabled]:checked + label:before, &.disabled:checked + label:before {
+		@include radio-element('on', 'disabled');
+	}
+}

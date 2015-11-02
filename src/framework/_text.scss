@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+
+/**
+*	Text default style.
+*/
+%text {
+	// Fold
+	@extend %input-default;
+}
+
+
+/**
+*	Text modificator mixin.
+*/
+@mixin text($color) {
+	@if (override('text')) {
+		@include ui-text($color);
+	} @else {
+		border-bottom-color: $color;
+		&:focus {
+			border-bottom: 2px solid $color;
+		}
+	}
+}
+
+
+/**
+*	Text classes.
+*/
+.text {
+	@if (override('text')) {
+		@include ui-text-default();
+	} @else {
+		@extend %text;
+	}
+
+	&._primary {
+		@include text(color('primary'));
+	}
+
+	&._secondary {
+		@include text(color('secondary'));
+	}
+
+	&._success {
+		@include text(color('success'));
+	}
+
+	&._warning {
+		@include text(color('warning'));
+	}
+
+	&._error {
+		@include text(color('error'));
+	}
+
+	&._info {
+		@include text(color('info'));
+	}
+}

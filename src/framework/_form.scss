@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+
+/**
+*	Calculate label font size.
+*/
+@function calc-label-font-size($ui-height) {
+	// Fold
+	@return floor($ui-height * .4);
+}
+
+
+/**
+*	Calculate label top padding.
+*/
+@function calc-label-top-padding($ui-height, $font-size) {
+	$result: $ui-height - $font-size * 1.5;
+	@return floor($result / 2);
+}
+
+
+/**
+*	Label class.
+*/
+.label {
+	@if (override('label')) {
+		@include ui-label();
+	} @else {
+		$ui-height: ui-size('medium');
+		$font-size: calc-label-font-size($ui-height);
+		display: block;
+		padding-top: calc-label-top-padding($ui-height, $font-size);
+		width: 100%;
+		height: $ui-height;
+		font-size: $font-size;
+		text-align: right;
+		line-height: 1.5;
+		vertical-align: middle;
+		color: color('heading');
+		&[for] {
+			cursor: pointer;
+		}
+		&.disabled {
+			color: color('mute');
+		}
+		// Mobile view
+		@include respond-to(xs) {
+			height: auto;
+			line-height: 1;
+			text-align: left;
+		}
+		// Size
+		@each $name, $ui-height in $ui-sizes {
+			&.#{$name} {
+				$font-size: calc-label-font-size($ui-height);
+				padding-top: calc-label-top-padding($ui-height, $font-size);
+				height: $ui-height;
+				font-size: $font-size;
+			}
+		}
+	}
+}
+
+
+/**
+*	Label vertical modificator.
+*/
+.label-vertical {
+	padding: 0 0 4px;
+	height: auto;
+	font-size: 12px;
+	text-align: left;
+}
+
+
+/**
+*	Annotation class.
+*/
+.annotation {
+	display: table-cell;
+	height: ui-size('medium');
+	font-size: 12px;
+	color: color('mute');
+	vertical-align: middle;
+	line-height: 1.2;
+
+	// Size
+	@each $name, $ui-height in $ui-sizes {
+		&.#{$name} {
+			height: $ui-height;
+			font-size: floor($ui-height * .35);
+		}
+	}
+}
+
+
+/**
+*	Annotation vertical modificator.
+*/
+.annotation-vertical {
+	padding-top: 8px;
+	height: auto;
+}
+
+
+/**
+*	Annotation color modificators.
+*/
+.annotation-error {
+	// Fold
+	color: color('error');
+}
+
+.annotation-success {
+	// Fold
+	color: color('success');
+}
+
+.annotation-warning {
+	// Fold
+	color: color('warning');
+}

@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+
+/**
+*	Заголовки.
+*/
+%heading {
+	margin: 20px 0 10px;
+	font-family: font('light');
+	font-weight: normal;
+	line-height: 1;
+	color: color('heading');
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+h1 {
+	@extend %heading;
+	margin-bottom: 30px;
+	font-size: 60px;
+}
+
+h2 {
+	@extend %heading;
+	font-size: 48px;
+}
+
+h3 {
+	@extend %heading;
+	font-size: 36px;
+}
+
+h4 {
+	@extend %heading;
+	font-size: 30px;
+}
+
+h5 {
+	@extend %heading;
+	font-size: 24px;
+	font-family: font('regular');
+}
+
+h6 {
+	@extend %heading;
+	font-size: 20px;
+	font-family: font('medium');
+}
+
+
+/**
+*	Параграф.
+*/
+p {
+	margin: ($grid-gutter / 2) 0;
+	line-height: 1.5;
+	color: inherit;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&._indent {
+		text-indent: 1.25em;
+	}
+}
+
+
+/**
+*	Строчные элементы.
+*/
+a {
+	text-decoration: none;
+	color: color('link');
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+s, del {
+	text-decoration: line-through;
+}
+
+u {
+	text-decoration: underline;
+}
+
+i, em {
+	font-family: font('italic');
+}
+
+b, strong {
+	font-family: font('bold');
+}
+
+._lowercase {
+	text-transform: lowercase;
+}
+
+._uppercase {
+	text-transform: uppercase;
+}
+
+._capitalize {
+	text-transform: capitalize;
+}
+
+._right {
+	text-align: right;
+}
+
+._left {
+	text-align: left;
+}
+
+._center {
+	text-align: center;
+}
+
+._justify {
+	text-align: justify;
+}
+
+
+/**
+*	Списки (только плейсхолдеры).
+*/
+%ul {
+	padding-left: 30px;
+	margin: ($grid-gutter / 2) 0;
+	list-style: disc;
+
+	li {
+		margin-bottom: 6px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	& ul {
+		margin: 8px 0;
+		padding-left: $grid-gutter;
+		list-style: circle;
+	}
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+%ol {
+	@extend %ul;
+	list-style: decimal;
+
+	& ol {
+		margin: 8px 0;
+		padding-left: $grid-gutter;
+		list-style: lower-alpha;
+	}
+}
+
+
+/**
+*	Модификатор цвета текста и фона.
+*/
+@each $name, $color in $colors {
+	._color-#{$name} {
+		color: $color !important; // Важно для замещения цвета
+	}
+
+	._bg-#{$name} {
+		background-color: $color !important; // Важно для замещения цвета
+	}
+}
+
+
+/**
+*	Модификаторы изображений.
+*/
+._image-left {
+	float: left !important;
+	margin-right: $grid-gutter !important;
+}
+
+._image-right {
+	float: right !important;
+	margin-left: $grid-gutter !important;
+}
+
+._image-fill {
+	width: 100% !important;
+	height: auto !important;
+}

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+
+/**
+*	Select.
+*/
+%select {
+	@extend %input-default;
+	padding: 0;
+	cursor: pointer;
+	@include scrollbar();
+
+	&[multiple] {
+		height: 150px;
+		option { background-color: rgba(0,0,0,0); } // Opera 12.10 fix
+		@each $name, $ui-height in $ui-sizes {
+			&.#{$name} {
+				height: 4 * $ui-height;
+			}
+		}
+	}
+
+	&:focus {
+		padding: 0;
+	}
+
+	@each $name, $ui-height in $ui-sizes {
+		&._#{$name} {
+			padding: 0;
+		}
+		&._#{$name}:focus {
+			padding: 0;
+		}
+	}
+}
+
+
+/**
+*	Select modificator mixin.
+*/
+@mixin select($color) {
+	@if (override('select')) {
+		@include ui-select($color);
+	} @else {
+		border-bottom-color: $color;
+
+		&:focus {
+			border-bottom: 2px solid $color;
+		}
+	}
+}
+
+
+/**
+*	Select.
+*/
+.select {
+	@if (override('select')) {
+		@include ui-select-default();
+	} @else {
+		@extend %select;
+	}
+}
+
+.select._primary {
+	@include select(color('primary'));
+}
+
+.select._secondary {
+	@include select(color('secondary'));
+}
+
+.select._success {
+	@include select(color('success'));
+}
+
+.select._warning {
+	@include select(color('warning'));
+}
+
+.select._error {
+	@include select(color('error'));
+}
+
+.select._info {
+	@include select(color('info'));
+}

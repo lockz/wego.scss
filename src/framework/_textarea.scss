@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+
+/**
+*	Textarea resizer mixin (webkit only).
+*/
+@mixin webkit-resizer($color) {
+	&::-webkit-resizer {
+		width: 10px;
+		height: 10px;
+		border: 5px solid $color;
+		border-left-color: transparent;
+		border-top-color: transparent;
+	}
+}
+
+
+/**
+*	Textarea default style.
+*/
+%textarea {
+	@extend %input-default;
+	height: 150px;
+	resize: vertical;
+	@include webkit-resizer(#c8c8c8);
+	@include scrollbar();
+	// Focused
+	&:focus {
+		@include webkit-resizer(color('primary'));
+	}
+	@each $name, $ui-height in $ui-sizes {
+		&._#{$name} {
+			height: 4 * $ui-height;
+		}
+	}
+}
+
+
+/**
+*	Textarea modificator mixin.
+*/
+@mixin textarea($color) {
+	@if (override('textarea')) {
+		@include ui-textarea($color);
+	} @else {
+		border-bottom-color: $color;
+		@include webkit-resizer($color);
+		&:focus {
+			border-bottom: 2px solid $color;
+			@include webkit-resizer($color);
+		}
+	}
+}
+
+
+/**
+*	Textarea classes.
+*/
+.textarea {
+	@if (override('textarea')) {
+		@include ui-textarea-default();
+	} @else {
+		@extend %textarea;
+	}
+
+	&._noresize {
+		resize: none;
+	}
+
+	&._vertical {
+		resize: vertical;
+	}
+
+	&._horizontal {
+		resize: horizontal;
+	}
+
+	&._primary {
+		@include textarea(color('primary'));
+	}
+
+	&._secondary {
+		@include textarea(color('secondary'));
+	}
+
+	&._success {
+		@include textarea(color('success'));
+	}
+
+	&._warning {
+		@include textarea(color('warning'));
+	}
+
+	&._error {
+		@include textarea(color('error'));
+	}
+
+	&._info {
+		@include textarea(color('info'));
+	}
+}
