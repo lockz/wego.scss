@@ -1,52 +1,53 @@
-@charset "UTF-8";
+@charset 'UTF-8';
 
 
 /**
-*	Compass.
+*	Файлы фреймворка Compas.
 */
-@import "compass/reset";
-@import "compass/css3";
+@import 'compass/reset';
+@import 'compass/css3';
 
 
 /**
-*	Framework.
+*	Файлы иконок FontAwesome.
 */
-@import "theme/config";
-@import "framework/config";
-@import "framework/animation";
-@import "framework/functions";
-@import "framework/mixins";
-@import "framework/core";
-@import "framework/grid";
-@import "framework/font";
-@import "framework/typography";
-@import "framework/table";
+@import 'font-awesome-compass';
+@import 'font-awesome';
 
 
 /**
-*	Перекрытия для UI.
+*	Конфигурация сайта.
 */
+@import 'theme/config';
 
 
 /**
-*	Framework UI.
+*	Независимые файлы фреймворка.
 */
-@import "framework/button";
-@import "framework/input";
-@import "framework/text";
-@import "framework/textarea";
-@import "framework/select";
-@import "framework/flags";
-@import "framework/form";
+@import 'framework/config';
+@import 'framework/animation';
+@import 'framework/functions';
+@import 'framework/mixins';
+@import 'framework/core';
+@import 'framework/grid';
+@import 'framework/typography';
+@import 'framework/table';
 
 
 /**
-*	Иконки FontAwesome.
+*	Файлы сайта.
 */
-@import "font-awesome-compass";
-@import "font-awesome";
+@import 'theme/other';
 
 
 /**
-*	Тема.
+*	Файлы компонентов формы (перекрываемые).
 */
+@import 'framework/button';
+@import 'framework/input';
+@import 'framework/text';
+@import 'framework/textarea';
+@import 'framework/select';
+@import 'framework/form';
+@import 'framework/checkbox';
+@import 'framework/radio';

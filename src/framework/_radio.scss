@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+
+/**
+*	Класс radio.
+*/
+.radio {
+	@if mixin-exists('radio') {
+		@include radio();
+	} @else {
+		@extend %checkbox;
+
+		background-color: #fff;
+		border: 2px solid material-color('grey', '600');
+
+		@include border-radius(50%);
+		@include animation-smooth(border-color filter -webkit-filter);
+
+		&:hover {
+			border-color: material-color('grey', '800');
+		}
+
+		&:checked {
+			$color: color('primary');
+
+			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="260" height="250" viewBox="0 0 260 250" enable-background="new 0 0 260 250" xml:space="preserve"><title>a black circle</title><title>Layer 1</title><a><ellipse fill="#{$color}" cx="130" cy="125" rx="90.3" ry="93.7"/></a></svg>');
+			-webkit-background-size: 100%; // webkit fix
+			border-color: $color;
+
+			&:hover {
+				@include filter(brightness(110%));
+			}
+
+			&:disabled {
+				$color: material-color('grey', '400');
+
+				background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="260" height="250" viewBox="0 0 260 250" enable-background="new 0 0 260 250" xml:space="preserve"><title>a black circle</title><title>Layer 1</title><a><ellipse fill="#{$color}" cx="130" cy="125" rx="90.3" ry="93.7"/></a></svg>');
+				border-color: $color;
+
+				@include filter(none);
+			}
+		}
+
+		&:disabled {
+			border-color: material-color('grey', '400');
+
+			@include filter(none);
+		}
+		
+	}
+
+	@extend %_caption;
+}

@@ -2,17 +2,19 @@
 
 
 /**
-*	Базовый класс для text, textarea, select.
+*	Универсальный, не стилизованный каркас для text, textarea, select.
 */
 %input {
 	$ui-height: ui-size('medium');
-	$font-size: calc-font-size($ui-height);
+	$font-size: calc-ui-font($ui-height);
+
 	display: inline-block;
 	margin: 0; // Reset default
-	padding: calc-padding($ui-height, $font-size);
+	padding: calc-ui-padding($ui-height, $font-size) round($ui-height * .25);
 	width: 100%; // Reset default
 	height: $ui-height;
 	font-size: $font-size;
+	font-family: font('regular');
 	line-height: normal;
 	vertical-align: middle;
 	border: none; // Reset default
@@ -23,8 +25,9 @@
 
 	@each $name, $ui-height in $ui-sizes {
 		&._#{$name} {
-			$font-size: calc-font-size($ui-height);
-			padding: calc-padding($ui-height, $font-size);
+			$font-size: calc-ui-font($ui-height);
+
+			padding: calc-ui-padding($ui-height, $font-size) round($ui-height * .25);
 			height: $ui-height;
 			font-size: $font-size;
 		}
@@ -33,20 +36,22 @@
 
 
 /**
-*	Input default class.
+*	Стилизованное текстовое поле.
 */
-%input-default {
+%_input {
 	@extend %input;
+
+	$ui-height: ui-size('medium');
+	$font-size: calc-ui-font($ui-height);
+	$padding: calc-ui-padding($ui-height, $font-size);
+
 	padding-left: 0;
 	padding-right: 0;
-	font-family: font('regular');
 	background: transparent;
-	border-bottom: 1px solid #c8c8c8;
+	border-bottom: 1px solid material-color('grey', '400');
 
 	&:focus {
-		$ui-height: ui-size('medium');
-		$font-size: calc-font-size($ui-height);
-		padding-bottom: calc-padding($ui-height, $font-size, .25, true) - 1;
+		padding-bottom: $padding - 1;
 		border-bottom: 2px solid color('primary');
 	}
 
@@ -56,13 +61,16 @@
 	}
 
 	@each $name, $ui-height in $ui-sizes {
+		$font-size: calc-ui-font($ui-height);
+		$padding: calc-ui-padding($ui-height, $font-size);
+
 		&._#{$name} {
 			padding-left: 0;
 			padding-right: 0;
 		}
+
 		&._#{$name}:focus {
-			$font-size: calc-font-size($ui-height);
-			padding-bottom: calc-padding($ui-height, $font-size, .25, true);
+			padding-bottom: $padding - 1;
 		}
 	}
 }

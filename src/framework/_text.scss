@@ -2,60 +2,54 @@
 
 
 /**
-*	Text default style.
+*	Стандартное поле ввода.
+*	@param {color} $color [false] - цветовой модификатор кнопки.
+*	@output Выводит стиль поля ввода.
 */
-%text {
-	// Fold
-	@extend %input-default;
-}
-
-
-/**
-*	Text modificator mixin.
-*/
-@mixin text($color) {
-	@if (override('text')) {
-		@include ui-text($color);
+@mixin _text($color: false) {
+	@if mixin-exists('text') {
+		@include text($color);
 	} @else {
-		border-bottom-color: $color;
-		&:focus {
-			border-bottom: 2px solid $color;
+		@extend %_input;
+
+		@if $color {
+			border-bottom-color: $color;
+
+			&:focus {
+				border-bottom: 2px solid $color;
+			}
 		}
 	}
 }
 
 
 /**
-*	Text classes.
+*	Текстовое поле.
 */
 .text {
-	@if (override('text')) {
-		@include ui-text-default();
-	} @else {
-		@extend %text;
-	}
+	@include _text();
 
 	&._primary {
-		@include text(color('primary'));
+		@include _text(color('primary'));
 	}
 
 	&._secondary {
-		@include text(color('secondary'));
+		@include _text(color('secondary'));
 	}
 
 	&._success {
-		@include text(color('success'));
+		@include _text(color('success'));
 	}
 
 	&._warning {
-		@include text(color('warning'));
+		@include _text(color('warning'));
 	}
 
 	&._error {
-		@include text(color('error'));
+		@include _text(color('error'));
 	}
 
 	&._info {
-		@include text(color('info'));
+		@include _text(color('info'));
 	}
 }

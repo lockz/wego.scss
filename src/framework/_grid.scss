@@ -2,33 +2,31 @@
 
 
 /**
-*	Строка (не использовать вертикальный отрицательный отступ).
+*	Строка.
 */
 .row {
 	margin-left: ceil(($grid-gutter / -2));
 	margin-right: floor(($grid-gutter / -2));
 	@include clearfix();
-
-	&._group {
-		margin-bottom: $grid-gutter;
-
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
 }
 
 
 /**
 *	Общий стиль для всех колонн.
+*	@output Выводит общий стиль для всех колонн.
 */
 @mixin make-columns-default() {
-	$i: 1;
-	$list: ".col-#{$i}, .col-lg-#{$i}, .col-md-#{$i}, .col-sm-#{$i}, .col-xs-#{$i}";
+	$list: "";
 
-	@for $i from 2 through $grid-count {
-		$list: "#{$list}, .col-#{$i}, .col-lg-#{$i}, .col-md-#{$i}, .col-sm-#{$i}, .col-xs-#{$i}";
+	@for $i from 1 through $grid-count {
+		$list: "#{$list} .col-#{$i},";
+
+		@each $name, $size in $screens {
+			$list: "#{$list} .col-#{$name}-#{$i},";
+		}
 	}
+
+	$list: str-slice($list, 1, -2);
 
 	#{$list} {
 		position: relative;
@@ -41,57 +39,26 @@
 
 
 /**
-*	Основная сетка.
+*	Стили колонн для всех экранов.
+*	@output Выводит все стили для всех колонн и экранов.
 */
-@mixin make-main-grid($screen: "") {
-	@if $screen != "" {
-		$screen: $screen + "-";
-	}
+@mixin make-columns-screen() {
+	@include make-columns();
 
-	@for $i from 1 through $grid-count {
-		$col-width: $i / $grid-count;
-
-		.col-#{$screen}#{$i} {
-			width: percentage($col-width);
-			@include respond-to(xs) {
-				width: 100%;
-			}
+	@each $name, $size in $screens {
+		@include respond-to($name) {
+			@include make-columns($name);
 		}
-
-		.offset-#{$screen}#{$i} {
-			margin-left: percentage($col-width);
-			@include respond-to(xs) {
-				margin-left: 0;
-			}
-		}
-
-		.push-#{$screen}#{$i} {
-			left: percentage($i / $grid-count);
-		}
-
-		.pull-#{$screen}#{$i} {
-			right: percentage($i / $grid-count);
-		}
-	}
-
-	.offset-#{$screen}0 {
-		margin-left: 0;
-	}
-
-	.push-#{$screen}0 {
-		left: auto;
-	}
-
-	.pull-#{$screen}0 {
-		right: auto;
 	}
 }
 
 
 /**
-*	Сетка для экранов.
+*	Создание колонн для экранов.
+*	@param {string} $screen [""] - название размера экрана.
+*	@output Выводит стиль для колонн заданного экрана.
 */
-@mixin make-grid($screen: "") {
+@mixin make-columns($screen: "") {
 	@if $screen != "" {
 		$screen: $screen + "-";
 	}
@@ -101,10 +68,22 @@
 
 		.col-#{$screen}#{$i} {
 			width: percentage($col-width);
+
+			@if ($screen == "") or ($screen == "lg-") {
+				@include respond-to(xs) {
+					width: 100%;
+				}
+			}
 		}
 
 		.offset-#{$screen}#{$i} {
 			margin-left: percentage($col-width);
+
+			@if ($screen == "") or ($screen == "lg-") {
+				@include respond-to(xs) {
+					margin-left: 0;
+				}
+			}
 		}
 
 		.push-#{$screen}#{$i} {
@@ -129,22 +108,7 @@
 	}
 }
 
-@include make-columns-default;
 
-@include make-main-grid();
+@include make-columns-default();
 
-@include respond-to(lg) {
-	@include make-main-grid(lg);
-}
-
-@include respond-to(md) {
-	@include make-grid(md);
-}
-
-@include respond-to(sm) {
-	@include make-grid(sm);
-}
-
-@include respond-to(xs) {
-	@include make-grid(xs);
-}
+@include make-columns-screen();

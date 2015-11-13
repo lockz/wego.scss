@@ -1,0 +1,22 @@
+@charset 'UTF-8';
+
+.heading {
+	padding-bottom: 20px;
+	border-bottom: 1px solid material-color('grey', '300');
+
+	&:first-child {
+		margin-top: 20px;
+	}
+}
+
+.cell {
+	margin-bottom: 20px;
+	padding: 20px;
+	background-color: material-color('blue-grey', '50');
+
+	.cell {
+		margin-top: 20px;
+		margin-bottom: 0;
+		background-color: material-color('blue-grey', '100');
+	}
+}

@@ -2,60 +2,133 @@
 
 
 /**
-*	Calculate label font size.
+*	Стандартный каркас для label.
 */
-@function calc-label-font-size($ui-height) {
-	// Fold
-	@return floor($ui-height * .4);
+%label {
+	$ui-height: ui-size('medium');
+	$font-size: calc-ui-font($ui-height);
+
+	display: block;
+	padding: calc-ui-padding($ui-height, $font-size, 1.5) 0 0 0;
+	width: 100%;
+	min-height: $ui-height; // multiline fix
+	font-size: $font-size;
+	text-align: right;
+	line-height: 1.5;
+	vertical-align: middle;
+
+	&[for] {
+		cursor: pointer;
+	}
+
+	@include respond-to(xs) {
+		padding-top: 0;
+		padding-bottom: calc-ui-padding($ui-height, $font-size, 2);
+		min-height: 0;
+		line-height: 1.25;
+		text-align: left;
+	}
+
+	@each $name, $ui-height in $ui-sizes {
+		&._#{$name} {
+			$font-size: calc-ui-font($ui-height);
+			padding: calc-ui-padding($ui-height, $font-size, 1.5) 0 0 0;
+			min-height: $ui-height;
+			font-size: $font-size;
+
+			@include respond-to(xs) {
+				padding-top: 0;
+				padding-bottom: calc-ui-padding($ui-height, $font-size, 2);
+				min-height: 0;
+				line-height: 1.25;
+				text-align: left;
+			}
+		}
+	}
+
+	&._disabled {
+		cursor: not-allowed;
+	}
+
+	&._vertical {
+		padding-top: 0;
+		padding-bottom: calc-ui-padding($ui-height, $font-size, 2);
+		min-height: 0;
+		line-height: 1.25;
+		text-align: left;
+	}
 }
 
 
 /**
-*	Calculate label top padding.
-*/
-@function calc-label-top-padding($ui-height, $font-size) {
-	$result: $ui-height - $font-size * 1.5;
-	@return floor($result / 2);
-}
-
-
-/**
-*	Label class.
+*	Класс для label.
 */
 .label {
-	@if (override('label')) {
-		@include ui-label();
+	@if mixin-exists('label') {
+		@include label();
 	} @else {
-		$ui-height: ui-size('medium');
-		$font-size: calc-label-font-size($ui-height);
-		display: block;
-		padding-top: calc-label-top-padding($ui-height, $font-size);
-		width: 100%;
-		height: $ui-height;
-		font-size: $font-size;
-		text-align: right;
-		line-height: 1.5;
-		vertical-align: middle;
+		@extend %label;
 		color: color('heading');
-		&[for] {
-			cursor: pointer;
-		}
-		&.disabled {
+
+		&._disabled {
 			color: color('mute');
 		}
-		// Mobile view
-		@include respond-to(xs) {
-			height: auto;
-			line-height: 1;
-			text-align: left;
+
+		&._success {
+			color: color('success');
 		}
-		// Size
-		@each $name, $ui-height in $ui-sizes {
-			&.#{$name} {
-				$font-size: calc-label-font-size($ui-height);
-				padding-top: calc-label-top-padding($ui-height, $font-size);
-				height: $ui-height;
-				font-size: $font-size;
+
+		&._info {
+			color: color('info');
+		}
+
+		&._warning {
+			color: color('warning');
+		}
+
+		&._error {
+			color: color('error');
+		}
+	}
+}
+
+
+/**
+*	Основной каркас для аннотации.
+*/
+%annotation {
+	$ui-height: ui-size('medium');
+	$font-size: calc-ui-font($ui-height, .35);
+
+	display: block;
+	padding-top: calc-ui-padding($ui-height, $font-size, 1.5);
+	min-height: $ui-height;
+	font-size: $font-size;
+	line-height: 1.5;
+
+	@include respond-to(xs) {
+		padding-top: calc-ui-padding($ui-height, $font-size, 2);
+		min-height: 0;
+		line-height: 1.25;
+	}
+
+	&._vertical {
+		padding-top: calc-ui-padding($ui-height, $font-size, 2);
+		min-height: 0;
+		line-height: 1.25;
+	}
+
+	@each $name, $ui-height in $ui-sizes {
+		&._#{$name} {
+			$font-size: calc-ui-font($ui-height, .35);
+
+			padding-top: calc-ui-padding($ui-height, $font-size, 1.5);
+			min-height: $ui-height;
+			font-size: $font-size;
+
+			&._vertical {
+				padding-top: calc-ui-padding($ui-height, $font-size, 2);
+				min-height: 0;
 			}
 		}
 	}
@@ -63,60 +136,153 @@
 
 
 /**
-*	Label vertical modificator.
-*/
-.label-vertical {
-	padding: 0 0 4px;
-	height: auto;
-	font-size: 12px;
-	text-align: left;
-}
-
-
-/**
-*	Annotation class.
+*	Класс для аннотаций.
 */
 .annotation {
-	display: table-cell;
-	height: ui-size('medium');
-	font-size: 12px;
-	color: color('mute');
-	vertical-align: middle;
-	line-height: 1.2;
+	@if mixin-exists('annotation') {
+		@include annotation();
+	} @else {
+		@extend %annotation;
 
-	// Size
-	@each $name, $ui-height in $ui-sizes {
-		&.#{$name} {
-			height: $ui-height;
-			font-size: floor($ui-height * .35);
+		color: color('mute');
+
+		&._success {
+			color: color('success');
+		}
+
+		&._info {
+			color: color('info');
+		}
+
+		&._warning {
+			color: color('warning');
+		}
+
+		&._error {
+			color: color('error');
 		}
 	}
 }
 
 
 /**
-*	Annotation vertical modificator.
+*	Класс уведомлений (не изменяемый, почему?).
 */
-.annotation-vertical {
-	padding-top: 8px;
-	height: auto;
+.notice {
+	position: relative;
+	margin-bottom: $grid-gutter;
+	padding: 20px 20px 20px 55px;
+	line-height: 1.5;
+	color: #fff;
+	background-color: color('heading');
+
+	&:before {
+		content: '\f059';
+		position: absolute;
+		top: 50%;
+		left: 20px;
+		margin-top: -12px;
+		font-size: 24px;
+		font-family: 'FontAwesome';
+		line-height: 1;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&._error {
+		background-color: color('error');
+
+		&:before {
+			content: '\f057';
+		}
+	}
+
+	&._success {
+		background-color: color('success');
+
+		&:before {
+			content: '\f058';
+		}
+	}
+
+	&._warning {
+		background-color: color('warning');
+
+		&:before {
+			content: '\f06a';
+		}
+	}
+
+	&._info {
+		background-color: color('info');
+
+		&:before {
+			content: '\f05a';
+		}
+	}
+
+	a {
+		color: #fff;
+		border-bottom: 1px dashed #fff;
+
+		&:hover {
+			text-decoration: none;
+			border-bottom-style: solid;
+		}
+	}
 }
 
 
 /**
-*	Annotation color modificators.
+*	Модальное окно с фоном и спиннером.
 */
-.annotation-error {
-	// Fold
-	color: color('error');
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2147483647;
+	background-color: rgba(color('background'), .9);
+
+	&._transparent {
+		background-color: transparent;
+	}
+
+	.wrapper {
+		height: 100%;
+	}
 }
 
-.annotation-success {
-	// Fold
-	color: color('success');
+.modal-close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	display: block;
+	font-size: 50px;
+	color: color('font');
+
+	@include transition(all $transition-duration);
+
+	&:hover {
+		text-decoration: none;
+		@include transform(rotate(90deg));
+	}
 }
 
-.annotation-warning {
-	// Fold
-	color: color('warning');
+.modal-spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -25px;
+	margin-left: -25px;
+	width: 50px;
+	height: 50px;
+	background-color: color('font');
+
+	&._active {
+		@include animation-rotateplane();
+	}
 }

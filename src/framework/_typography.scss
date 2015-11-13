@@ -5,10 +5,10 @@
 *	Заголовки.
 */
 %heading {
-	margin: 20px 0 10px;
+	margin: 20px 0 15px;
 	font-family: font('light');
 	font-weight: normal;
-	line-height: 1;
+	line-height: 1.25;
 	color: color('heading');
 
 	&:first-child {
@@ -22,29 +22,65 @@
 
 h1 {
 	@extend %heading;
-	margin-bottom: 30px;
 	font-size: 60px;
+
+	@include respond(md) {
+		font-size: 50px;
+	}
+
+	@include respond(sm, xs) {
+		font-size: 40px;
+	}
 }
 
 h2 {
 	@extend %heading;
 	font-size: 48px;
+
+	@include respond(md) {
+		font-size: 40px;
+	}
+
+	@include respond(sm, xs) {
+		font-size: 34px;
+	}
 }
 
 h3 {
 	@extend %heading;
 	font-size: 36px;
+
+	@include respond(md) {
+		font-size: 32px;
+	}
+
+	@include respond(sm, xs) {
+		font-size: 30px;
+	}
 }
 
 h4 {
 	@extend %heading;
 	font-size: 30px;
+
+	@include respond(md) {
+		font-size: 28px;
+	}
+
+	@include respond(sm, xs) {
+		font-size: 26px;
+		font-family: font('regular');
+	}
 }
 
 h5 {
 	@extend %heading;
 	font-size: 24px;
 	font-family: font('regular');
+
+	@include respond(sm, xs) {
+		font-size: 22px;
+	}
 }
 
 h6 {
@@ -73,6 +109,8 @@ p {
 	&._indent {
 		text-indent: 1.25em;
 	}
+
+	@include clearfix();
 }
 
 
@@ -102,6 +140,11 @@ i, em {
 
 b, strong {
 	font-family: font('bold');
+}
+
+code {
+	font-family: monospace;
+	background-color: material-color('grey', '200');
 }
 
 ._lowercase {
@@ -134,12 +177,19 @@ b, strong {
 
 
 /**
-*	Списки (только плейсхолдеры).
+*	Списки.
 */
-%ul {
+%list {
 	padding-left: 30px;
 	margin: ($grid-gutter / 2) 0;
-	list-style: disc;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
 
 	li {
 		margin-bottom: 6px;
@@ -149,28 +199,27 @@ b, strong {
 		}
 	}
 
-	& ul {
-		margin: 8px 0;
-		padding-left: $grid-gutter;
-		list-style: circle;
-	}
-
-	&:first-child {
-		margin-top: 0;
-	}
-
-	&:last-child {
-		margin-bottom: 0;
-	}
-}
-
-%ol {
-	@extend %ul;
-	list-style: decimal;
-
+	& ul,
 	& ol {
 		margin: 8px 0;
 		padding-left: $grid-gutter;
+	}
+}
+
+.ul {
+	@extend %list;
+	list-style: disc;
+
+	& ul {
+		list-style: circle;
+	}
+}
+
+.ol {
+	@extend %list;
+	list-style: decimal;
+
+	& ol {
 		list-style: lower-alpha;
 	}
 }
@@ -191,19 +240,25 @@ b, strong {
 
 
 /**
-*	Модификаторы изображений.
+*	Изображения.
 */
 ._image-left {
 	float: left !important;
-	margin-right: $grid-gutter !important;
+	margin-right: $grid-gutter / 1.5 !important;
 }
 
 ._image-right {
 	float: right !important;
-	margin-left: $grid-gutter !important;
+	margin-left: $grid-gutter / 1.5 !important;
+}
+
+._image-center {
+	display: block !important;
+	margin: 0 auto !important;
 }
 
 ._image-fill {
+	display: block !important;
 	width: 100% !important;
 	height: auto !important;
 }

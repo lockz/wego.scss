@@ -2,39 +2,56 @@
 
 
 /**
-*	General.
+*	Подключение шрифтов Font-Face.
+*/
+@each $font-style, $font-name in $fonts {
+	@include font-face($font-name, font-files(
+		'#{$font-name}.woff',
+		'#{$font-name}.ttf',
+		'#{$font-name}.svg'
+	), '#{$font-name}.eot', normal, normal);
+}
+
+
+/**
+*	Изменение поведения всех элементы под border-box.
 */
 * {
-	// Default box size behaviour
 	@include box-sizing(border-box);
 }
 
+
+/**
+*	Фича для прижатого к низу футера.
+*/
 html {
-	// Snap footer fix
 	height: 100%;
-	// end Snap footer fix
 }
 
-body {
-	// Snap footer fix
-	position: relative;
-	min-height: 100%;
-	// end Snap footer fix
 
+/**
+*	Настройка body.
+*/
+body {
+	position: relative; // sticky footer fix
+	min-height: 100%; // sticky footer fix
 	font-size: $font-size;
 	font-family: font('regular'), Arial; // Webfont render fix (roboto)
 	color: color('font');
 	background-color: color('background');
 }
 
+
+/**
+*	Удаление обводки в webkit.
+*/
 :focus {
-	// Disabling outline on webkit
 	outline: none;
 }
 
 
 /**
-*	Selection (only separately!).
+*	Цвет выделения текста на странице (только отдельно).
 */
 ::selection {
 	color: color('background');
@@ -48,20 +65,17 @@ body {
 
 
 /**
-*	Placeholder (only separately!).
+*	Смена цвета для заполнителей (только отдельно).
 */
 ::-webkit-input-placeholder {
-	// Fold
 	color: color('mute');
 }
 
 :-moz-placeholder {
-	// Fold
 	color: color('mute');
 }
 
 ::-moz-placeholder {
-	// Fold
 	color: color('mute');
 }
 
@@ -72,10 +86,11 @@ body {
 
 
 /**
-*	Wrapper.
+*	Класс обертки в фиксированную ширину.
 */
 .wrapper {
 	margin: 0 auto;
+
 	@each $size, $width in $screens {
 		@if $width == auto {
 			@include respond-to($size) {
@@ -93,24 +108,22 @@ body {
 
 
 /**
-*	Clear.
+*	Очистка плавающий элементов.
 */
 .clear {
-	// Fold
 	@include clearfix();
 }
 
 
 /**
-*	Visibility.
+*	Модификаторы видмости.
 */
-.hidden {
-	// Fold
+._hidden {
 	display: none;
 }
 
 @each $size, $width in $screens {
-	.visible-#{$size} {
+	._visible-#{$size} {
 		@each $id, $max_width in $screens {
 			@if $size == $id {
 				@include respond-to($id) {
@@ -123,7 +136,8 @@ body {
 			}
 		}
 	}
-	.hidden-#{$size} {
+
+	._hidden-#{$size} {
 		@include respond-to($size) {
 			display: none !important;
 		}
@@ -132,65 +146,11 @@ body {
 
 
 /**
-*	Z-depth.
+*	Модификаторы глубины (z-уровень).
 */
 @for $i from 0 through 5 {
-	// Deprecated
-	.z-depth-#{$i} {
-		@include z-depth($i);
-	}
-
 	._depth-#{$i} {
-		@include z-depth($i);
-	}
-}
-
-
-/**
-*	Layer.
-*/
-.layer {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 1000;
-	background-color: rgba(color('background'), .9);
-	&._transparent {
-		background-color: transparent;
-	}
-	.wrapper {
-		height: 100%;
-	}
-}
-
-.layer-close {
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	display: block;
-	font-size: 50px;
-	color: color('font');
-	@include transition(all $transition-duration);
-	&:hover {
-		text-decoration: none;
-		@include transform(rotate(90deg));
-	}
-}
-
-.layer-spinner {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-top: -25px;
-	margin-left: -25px;
-	width: 50px;
-	height: 50px;
-	background-color: color('font');
-	&.active,
-	&._active {
-		@include animation-rotateplane();
+		@include depth($i);
 	}
 }
 

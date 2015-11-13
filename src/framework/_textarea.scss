@@ -2,32 +2,16 @@
 
 
 /**
-*	Textarea resizer mixin (webkit only).
+*	Стандартный стиль для многострочного поля ввода.
 */
-@mixin webkit-resizer($color) {
-	&::-webkit-resizer {
-		width: 10px;
-		height: 10px;
-		border: 5px solid $color;
-		border-left-color: transparent;
-		border-top-color: transparent;
-	}
-}
+%_textarea {
+	@extend %_input;
 
-
-/**
-*	Textarea default style.
-*/
-%textarea {
-	@extend %input-default;
 	height: 150px;
 	resize: vertical;
-	@include webkit-resizer(#c8c8c8);
+
 	@include scrollbar();
-	// Focused
-	&:focus {
-		@include webkit-resizer(color('primary'));
-	}
+
 	@each $name, $ui-height in $ui-sizes {
 		&._#{$name} {
 			height: 4 * $ui-height;
@@ -37,31 +21,32 @@
 
 
 /**
-*	Textarea modificator mixin.
+*	Стандартное поле ввода многострочного текста.
+*	@param {color} $color [false] - цветовой модификатор.
+*	@output Выводит стиль поля ввода многострочного текста.
 */
-@mixin textarea($color) {
-	@if (override('textarea')) {
-		@include ui-textarea($color);
+@mixin _textarea($color: false) {
+	@if mixin-exists('textarea') {
+		@include textarea($color);
 	} @else {
-		border-bottom-color: $color;
-		@include webkit-resizer($color);
-		&:focus {
-			border-bottom: 2px solid $color;
-			@include webkit-resizer($color);
+		@extend %_textarea;
+
+		@if $color {
+			border-bottom-color: $color;
+
+			&:focus {
+				border-bottom-width: 2px;
+			}
 		}
 	}
 }
 
 
 /**
-*	Textarea classes.
+*	Класс многострочного поля ввода.
 */
 .textarea {
-	@if (override('textarea')) {
-		@include ui-textarea-default();
-	} @else {
-		@extend %textarea;
-	}
+	@include _textarea();
 
 	&._noresize {
 		resize: none;
@@ -76,26 +61,26 @@
 	}
 
 	&._primary {
-		@include textarea(color('primary'));
+		@include _textarea(color('primary'));
 	}
 
 	&._secondary {
-		@include textarea(color('secondary'));
+		@include _textarea(color('secondary'));
 	}
 
 	&._success {
-		@include textarea(color('success'));
+		@include _textarea(color('success'));
 	}
 
 	&._warning {
-		@include textarea(color('warning'));
+		@include _textarea(color('warning'));
 	}
 
 	&._error {
-		@include textarea(color('error'));
+		@include _textarea(color('error'));
 	}
 
 	&._info {
-		@include textarea(color('info'));
+		@include _textarea(color('info'));
 	}
 }

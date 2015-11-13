@@ -1,34 +1,17 @@
-@charset "UTF-8";
+@charset 'UTF-8';
 
 
 /**
-*	Button font size calculation.
-*/
-@function calc-button-font-size($ui-height) {
-	@return floor($ui-height * .4);
-}
-
-
-/**
-*	Button padding calculation.
-*/
-@function calc-button-padding($ui-height, $font-size) {
-	$vertical: floor(($ui-height - $font-size) / 2);
-	$horizontal: floor($ui-height * .23);
-	@return $vertical $horizontal;
-}
-
-
-/**
-*	Каркас для кнопки (универсальный не стилизованный).
+*	Универсальный, не стилизованный каркас для кнопок.
 */
 %button {
 	$ui-height: ui-size('medium');
-	$font-size: calc-button-font-size($ui-height);
+	$font-size: calc-ui-font($ui-height);
+
 	position: relative;
 	display: inline-block;
 	margin-left: 5px;
-	padding: calc-button-padding($ui-height, $font-size);
+	padding: calc-ui-padding($ui-height, $font-size) round($ui-height * .25);
 	min-width: 64px;
 	height: $ui-height;
 	font-size: $font-size;
@@ -52,58 +35,63 @@
 		margin-left: 0;
 	}
 
+	@include respond-to(xs) {
+		display: block;
+		margin-left: 0;
+		width: 100%;
+		height: auto !important;
+	}
+
+	// Модификации размеров
 	@each $name, $ui-height in $ui-sizes {
 		&._#{$name} {
-			$font-size: calc-button-font-size($ui-height);
-			padding: calc-button-padding($ui-height, $font-size);
+			$font-size: calc-ui-font($ui-height);
+
+			padding: calc-ui-padding($ui-height, $font-size) round($ui-height * .25);
 			height: $ui-height;
 			font-size: $font-size;
 		}
-	}
-
-	@include respond-to(xs) {
-		display: block;
-		width: 100%;
-		height: auto !important;
 	}
 }
 
 
 /**
-*	Стилизация основной кнопки.
+*	Каркас стандартной стилизованной кнопки.
 */
-%button-default {
+%_button {
 	@extend %button;
+
 	font-family: font('medium');
 	text-transform: uppercase;
-	color: #444444;
-	background-color: #fff;
+	color: color('font');
+	background-color: color('default');
 	overflow: hidden;
-	z-index: 1; // Web-kit overflow hidden bug avoid
+	z-index: 1; // Web-kit 'overflow: hidden' bug
+
 	@include border-radius(3px);
-	@include transition(all $transition-duration $ease-out);
+	@include animation-smooth();
 
 	&:hover {
-		@include z-depth(1);
+		@include depth(1);
 
 		@for $i from 0 through 5 {
 			&._depth-#{$i} {
-				@include z-depth($i + 1);
+				@include depth($i + 1);
 			}
 		}
 	}
 
 	&:disabled,	&[disabled], &._disabled {
 		color: #a8a7a9;
-		background-color: #dfdfdf;
-		@include z-depth(0);
+		background-color: #f6f6f6;
+		@include depth(0);
 
 		&:before {
 			display: none;
 		}
 
 		&:active {
-			@include z-depth(0);
+			@include depth(0);
 		}
 	}
 
@@ -124,11 +112,11 @@
 	}
 
 	&:active {
-		@include z-depth(0);
+		@include depth(0);
 
 		@for $i from 1 through 5 {
 			&._depth-#{$i} {
-				@include z-depth($i);
+				@include depth($i);
 			}
 		}
 
@@ -140,69 +128,79 @@
 	}
 
 	&._active {
-		@include animation-progress();
+		@include animation-progress(#e0e0e0);
 	}
 }
 
 
 /**
-*	Стайлер для кнопки.
+*	Стандартная кнопка.
+*	@param {color} $color [false] - Цветовой модификатор кнопки.
+*	@output Выводит стиль кнопки.
 */
-@mixin button($color) {
-	@if (override('button')) {
-		@include ui-button($color);
+@mixin _button($color: false) {
+	@if mixin-exists('button') {
+		@include button($color);
 	} @else {
-		color: #fff;
-		background-color: $color;
+		@extend %_button;
 
-		&:hover {
-			background-color: tint($color, 20%);
-		}
+		@if $color {
+			color: #fff;
+			background-color: $color;
 
-		&:disabled,	&[disabled], &._disabled {
-			background-color: #dfdfdf;
+			&:hover {
+				background-color: color-modify($color, 'hover');
+			}
+
+			&:disabled,	&[disabled], &._disabled {
+				background-color: color-modify($color, 'disabled');
+
+				&._active {
+					color: #fff;
+					background-color: tint($color, 50%);
+				}
+			}
+
+			&:before {
+				background-color: #fff;
+			}
 
 			&._active {
-				color: #fff;
-				background-color: tint($color, 50%);
+				@include animation-progress();
 			}
-		}
-
-		&:before {
-			background-color: #fff;
 		}
 	}
 }
 
+
+/**
+*	Кнопка.
+*/
 .button {
-	@if (override('button')) {
-		@include ui-button-default();
-	} @else {
-		@extend %button-default;
-	}
+	@include _button();
 
 	&._primary {
-		@include button(color('primary'));
+		@include _button(color('primary'));
 	}
 
 	&._secondary {
-		@include button(color('secondary'));
+		@include _button(color('secondary'));
 	}
 
 	&._success {
-		@include button(color('success'));
+		@include _button(color('success'));
 	}
 
 	&._warning {
-		@include button(color('warning'));
+		@include _button(color('warning'));
 	}
 
 	&._error {
-		@include button(color('error'));
+		@include _button(color('error'));
 	}
 
 	&._info {
-		@include button(color('info'));
+		@include _button(color('info'));
 	}
 
 	&._link {
@@ -215,10 +213,9 @@
 		}
 
 		&:disabled,	&[disabled], &._disabled {
+			color: color('link', 'disabled');
 			background-color: transparent;
-			&._active {
-				@include animation(none);
-			}
+
 			&:hover {
 				text-decoration: none;
 			}
@@ -227,18 +224,21 @@
 		&:before {
 			background-color: #7e7d7e;
 		}
-
-		&.active {
-			@include animation(none);
-		}
 	}
 
 	&._float {
+		display: inline-block;
+		margin-left: 5px;
 		padding-left: 0;
 		padding-right: 0;
 		width: ui-size('medium');
 		min-width: 0;
+
 		@include border-radius(50%);
+
+		&:first-child {
+			margin-left: 0;
+		}
 
 		@each $name, $ui-height in $ui-sizes {
 			&._#{$name} {

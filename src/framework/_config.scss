@@ -1,37 +1,92 @@
-@charset "UTF-8";
+@charset 'UTF-8';
 
 
 /**
-*	Настройки фреймворка.
+*	Экраны.
+*/
+$screens-default: (
+	'lg': 1180px,
+	'md': 940px,
+	'sm': 700px,
+	'xs': auto,
+);
+$screens: () !default;
+$screens: map-merge($screens-default, $screens);
+
+
+/**
+*	Сетка.
+*/
+$grid-gutter: 20px !default;
+$grid-count : 12 !default;
+
+
+/**
+*	Множитель отступов-модификаторов (_mt, _mb и т.д.).
 */
 $intends-multiplier: 5 !default;
 
 
 /**
-*	Colors.
+*	Шрифты.
+*/
+$font-size: 14px !default;
+$fonts-default: (
+	'light'  : 'robotolight',
+	'regular': 'robotoregular',
+	'medium' : 'robotomedium',
+	'bold'   : 'robotobold',
+	'italic' : 'robotoitalic'
+);
+$fonts: () !default;
+$fonts: map-merge($fonts-default, $fonts);
+
+
+/**
+*	Основные цвета сайта.
 */
 $colors-default: (
 	'background': #ffffff,
 	'primary'   : #1e88e5,
-	'secondary' : #FF5722,
+	'secondary' : #ff5722,
 	'mute'      : #b0b0b0,
 	'selection' : #428bca,
 	'focus'     : #adadad,
 	'link'      : #428bca,
 	'font'      : #444444,
-	'heading'   : #757575,
+	'heading'   : #424242,
 	'default'   : #f7f7f7,
-	'success'   : #4CAF50,
-	'info'      : #00BCD4,
-	'warning'   : #FFC107,
-	'error'     : #F44336,
+	'success'   : #4caf50,
+	'info'      : #00bcd4,
+	'warning'   : #ffc107,
+	'error'     : #f44336,
 );
 $colors: () !default;
 $colors: map-merge($colors-default, $colors);
 
 
 /**
-*	Material color collection.
+*	Размеры компонентов форм.
+*/
+$ui-sizes-default: (
+	'small' : 30px,
+	'medium': 36px,
+	'large' : 48px,
+	'huge'  : 64px,
+);
+$ui-sizes: () !default;
+$ui-sizes: map-merge($ui-sizes-default, $ui-sizes);
+
+
+/**
+*	Тайминги анимации.
+*/
+$transition-duration: 300ms !default;
+$transition-delay   : 400ms !default;
+
+
+/**
+*	Цвета материального дизайна.
 */
 $material-colors: (
 	'red': (
@@ -327,70 +382,3 @@ $material-colors: (
 		'900': #263238,
 	),
 );
-
-
-/**
-*	Fonts.
-*/
-$font-size: 14px !default;
-$fonts-default: (
-	'light'  : 'robotolight',
-	'regular': 'robotoregular',
-	'medium' : 'robotomedium',
-	'bold'   : 'robotobold',
-	'italic' : 'robotoitalic'
-);
-$fonts: () !default;
-$fonts: map-merge($fonts-default, $fonts);
-
-
-/**
-*	Responsive.
-*/
-$grid-gutter: 20px !default;
-$grid-count : 12 !default;
-$screens-default: (
-	"lg": 1180px,
-	"md": 940px,
-	"sm": 700px,
-	"xs": auto
-);
-$screens: () !default;
-$screens: map-merge($screens-default, $screens);
-
-
-/**
-*	UI overrides.
-*/
-$overrides-default: (
-	'button'  : false,
-	'text'    : false,
-	'select'  : false,
-	'textarea': false,
-	'label'   : false,
-	'checkbox': false,
-	'radio'   : false,
-	'table'   : false
-);
-$overrides: () !default;
-$overrides: map-merge($overrides-default, $overrides);
-
-
-/**
-*	UI sizes.
-*/
-$ui-sizes-default: (
-	'small' : 30px,
-	'medium': 36px,
-	'large' : 48px,
-	'huge'  : 64px
-);
-$ui-sizes: () !default;
-$ui-sizes: map-merge($ui-sizes-default, $ui-sizes);
-
-
-/**
-*	Animation timing.
-*/
-$transition-duration: 300ms !default;
-$transition-delay   : 400ms !default;

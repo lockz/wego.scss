@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+
+/**
+*	Каркас для флагового элемента.
+*/
+%checkbox {
+	$ui-height: ui-size('medium');
+
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: $ui-height / 2;
+	height: $ui-height / 2;
+	cursor: pointer;
+	vertical-align: middle;
+	background-repeat: no-repeat;
+	background-position: 50%;
+
+	@include appearance(none);
+	@include background-size(100%);
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+}
+
+
+/**
+*	Стилизованный checkbox.
+*/
+%_checkbox {
+	@extend %checkbox;
+
+	background-color: #fff;
+	border: 2px solid material-color('grey', '600');
+
+	@include border-radius(3px);
+	@include animation-smooth();
+
+	&:hover {
+		border-color: material-color('grey', '800');
+	}
+
+	&:checked {
+		background-color: color('primary');
+		background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9Ijg5My43IiBoZWlnaHQ9Ijc1MiIgdmlld0JveD0iMCAwIDg5My43IDc1MiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgODkzLjcwNCA3NTIuMDExIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNNzY3LjIgNC40TDg4Ny40IDEwNS4xYzcuMiA2LjEgOC41IDE3LjQgMi4zIDI0LjhMMzczLjEgNzQ1LjdjLTQuMSA0LjktOS43IDYuOS0xNS4yIDYuMiAtMy45LTAuMi03LjctMS42LTEwLjktNC4zTDYuNiA0NjJjLTcuNi02LjMtOC45LTE3LjgtMi42LTI1LjJsMTAwLjUtMTE5LjhjNi4xLTcuMiAxNy42LTguMyAyNS40LTEuOGwyMDcuNCAxNzRMNzQyLjMgNi4zQzc0OS0xLjUgNzU5LjctMiA3NjcuMiA0LjR6Ii8+PC9zdmc+');
+		border-color: color('primary');
+
+		&:hover {
+			background-color: tint(color('primary'), 20%);
+			border-color: tint(color('primary'), 20%);
+		}
+
+		&:disabled {
+			background-color: material-color('grey', '400');
+			border-color: material-color('grey', '400');
+		}
+	}
+
+	&:disabled {
+		border-color: material-color('grey', '400');
+	}
+}
+
+
+/**
+*	Стилизованный checkbox.
+*/
+%_caption {
+	& + span {
+		$flag-size: ui-size('medium') / 2;
+
+		display: block;
+		padding-top: ($flag-size - 14 * 1.25) / 2;
+		padding-left: $flag-size + 4px;
+		line-height: 1.25;
+		cursor: pointer;
+	}
+
+	&:disabled + span {
+		cursor: not-allowed;
+	}
+
+	@at-root {
+		label > & {
+			float: left;
+			display: block;
+		}
+	}
+}
+
+
+/**
+*	Класс чекбокса.
+*/
+.checkbox {
+	@if mixin-exists('checkbox') {
+		@include checkbox();
+	} @else {
+		@extend %_checkbox;
+	}
+
+	@extend %_caption;
+}

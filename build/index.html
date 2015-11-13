@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
-		<title>WEGO SCSS framework</title>
+		<title>wego scss framework</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -154,15 +154,31 @@
 				</div>
 			</div>
 
+			<h3>Grid pull/push</h3>
+
+			<div class="row">
+				<div class="col-4 push-4 push-xs-0">
+					<div class="cell">first (col-4 push-4)</div>
+				</div>
+
+				<div class="col-4 pull-4 pull-xs-0">
+					<div class="cell">second (col-4 pull-4)</div>
+				</div>
+
+				<div class="col-4">
+					<div class="cell">third</div>
+				</div>
+			</div>
+
 			<h3>Grid responsive</h3>
 
 			<div class="row">
-				<div class="col-6 col-md-7 col-sm-8 col-xs-10">
-					<div class="cell">col-6 on large, col-7 on medium, col-8 on small, col-10 on extra small</div>
+				<div class="col-6 col-md-7 col-sm-8 col-xs-9">
+					<div class="cell">col-6 on large, col-7 on medium, col-8 on small, col-9 on extra small</div>
 				</div>
 
-				<div class="col-6 col-md-5 col-sm-4 col-xs-2">
-					<div class="cell">col-6 on large, col-5 on medium, col-4 on small, col-2 on extra small</div>
+				<div class="col-6 col-md-5 col-sm-4 col-xs-3">
+					<div class="cell">col-6 on large, col-5 on medium, col-4 on small, col-3 on extra small</div>
 				</div>
 			</div>
 
@@ -222,12 +238,14 @@
 
 			<div class="row">
 				<div class="col-12">
-					<h1>h1 Heading 60px</h1>
-					<h2>h2 Heading 48px</h2>
-					<h3>h3 Heading 36px</h3>
-					<h4>h4 Heading 30px</h4>
-					<h5>h5 Heading 24px</h5>
-					<h6>h6 Heading 20px</h6>
+					<div class="cell">
+						<h1>h1 Heading</h1>
+						<h2>h2 Heading</h2>
+						<h3>h3 Heading</h3>
+						<h4>h4 Heading</h4>
+						<h5>h5 Heading</h5>
+						<h6>h6 Heading</h6>
+					</div>
 				</div>
 			</div>
 			
@@ -235,7 +253,7 @@
 
 			<div class="row">
 				<div class="col-3">
-					<p>
+					<p class="cell">
 						Left aligned (default)<br>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
@@ -244,7 +262,7 @@
 				</div>
 
 				<div class="col-3">
-					<p class="right">
+					<p class="_right cell">
 						Right aligned<br>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
@@ -253,7 +271,7 @@
 				</div>
 
 				<div class="col-3">
-					<p class="justify">
+					<p class="_justify cell">
 						Justify<br>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
@@ -262,54 +280,78 @@
 				</div>
 
 				<div class="col-3">
-					<p class="indent">
-						Text with indent for each paragraph.
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-					</p>
+					<div class="cell">
+						<p class="_indent">
+							Text with indent for each paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+						</p>
 
-					<p class="indent">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-					</p>
+						<p class="_indent">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+						</p>
+					</div>
+					
 				</div>
 			</div>
 
 			<h3>Inline</h3>
 
 			<div class="row">
-				<div class="col-6">
-					<p>
-						<s>&lt;s&gt;Strikethrough text&lt;/s&gt;</s>
-					</p>
+				<div class="col-4">
+					<div class="cell">
+						<p>
+							&lt;s&gt;<s>Strikethrough text</s>&lt;/s&gt;
+						</p>
 
-					<p>
-						<u>&lt;u&gt;Underline text&lt;/u&gt;</u>
-					</p>
+						<p>
+							&lt;del&gt;<del>Deleted text</del>&lt;/del&gt;
+						</p>
 
-					<p>
-						<b>&lt;b&gt;Bold text&lt;/b&gt; &lt;strong&gt;Strong text&lt;/strong&gt;</b>
-					</p>
+						<p>
+							&lt;u&gt;<u>Underline text</u>&lt;/u&gt;
+						</p>
 
-					<p>
-						<i>&lt;i&gt;Italic text&lt;/i&gt; &lt;em&gt;Em text&lt;/em&gt;</i>
-					</p>
+						<p>
+							&lt;b&gt;<b>Bold text</b>&lt;/b&gt;
+						</p>
+
+						<p>
+							&lt;strong&gt;<strong>Strong text</strong>&lt;/strong&gt;
+						</p>
+
+						<p>
+							&lt;i&gt;<i>Italic text</i>&lt;/i&gt;
+						</p>
+
+						<p>
+							&lt;em&gt;<em>Em text</em>&lt;/em&gt;
+						</p>
+					</div>
 				</div>
 
-				<div class="col-6">
-					<p>
-						<span class="lowercase">&lt;span class=&quot;lowercase&quot;&gt;Lowecased text&lt;/span&gt;</span>
-					</p>
+				<div class="col-4">
+					<div class="cell">
+						<p>
+							&lt;span class=&quot;_lowercase&quot;&gt;<span class="_lowercase">Lowecased text</span>&lt;/span&gt;
+						</p>
 
-					<p>
-						<span class="uppercase">&lt;span class=&quot;uppercase&quot;&gt;Uppercased text&lt;/span&gt;</span>
-					</p>
+						<p>
+							&lt;span class=&quot;_uppercase&quot;&gt;<span class="_uppercase">Uppercased text</span>&lt;/span&gt;
+						</p>
 
-					<p>
-						<span class="capitalize">&lt;span class=&quot;capitalize&quot;&gt;Capitalized text&lt;/span&gt;</span>
-					</p>
+						<p>
+							&lt;span class=&quot;_capitalize&quot;&gt;<span class="_capitalize">Capitalized text</span>&lt;/span&gt;
+						</p>
 
-					<p>
-						<a href="javascript:void(0)">&lt;a href=&quot;#&quot;&gt;Link text&lt;/a&gt;</a>
+						<p>
+							&lt;a href=&quot;#&quot;&gt;<a href="javascript:void(0)">Link text</a>&lt;/a&gt;
+						</p>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<p class="cell">
+						&lt;code&gt;<code>var $string = 'Hello world!';</code>&lt;/code&gt;
 					</p>
 				</div>
 			</div>
@@ -318,504 +360,1204 @@
 
 			<div class="row">
 				<div class="col-6">
-					<h6>UL</h6>
+					<div class="cell">
+						<ul class="ul">
+							<li>Lorem ipsum dolor sit amet</li>
 
-					<ul class="ul">
-						<li>Lorem ipsum dolor sit amet</li>
+							<li>Consectetur adipiscing elit</li>
 
-						<li>Consectetur adipiscing elit</li>
+							<li>Integer molestie lorem at massa</li>
 
-						<li>Integer molestie lorem at massa</li>
+							<li>Eget porttitor lorem
+								<ul>
+									<li>Facilisis in pretium nisl aliquet</li>
 
-						<li>Eget porttitor lorem
-							<ul>
-								<li>Facilisis in pretium nisl aliquet</li>
+									<li>Nulla volutpat aliquam velit</li>
 
-								<li>Nulla volutpat aliquam velit</li>
+									<li>Phasellus iaculis neque</li>
 
-								<li>Phasellus iaculis neque</li>
+									<li>Purus sodales ultricies</li>
+								</ul>
+							</li>
 
-								<li>Purus sodales ultricies</li>
-							</ul>
-						</li>
+							<li>Vestibulum laoreet porttitor sem</li>
 
-						<li>Vestibulum laoreet porttitor sem</li>
-
-						<li>Ac tristique libero volutpat at</li>
-					</ul>
+							<li>Ac tristique libero volutpat at</li>
+						</ul>
+					</div>
 				</div>
 
 				<div class="col-6">
-					<h6>OL</h6>
+					<div class="cell">
+						<ol class="ol">
+							<li>Lorem ipsum dolor sit amet</li>
 
-					<ol class="ol">
-						<li>Lorem ipsum dolor sit amet</li>
+							<li>Consectetur adipiscing elit</li>
 
-						<li>Consectetur adipiscing elit</li>
+							<li>Integer molestie lorem at massa</li>
 
-						<li>Integer molestie lorem at massa</li>
+							<li>Eget porttitor lorem
+								<ol>
+									<li>Facilisis in pretium nisl aliquet</li>
 
-						<li>Eget porttitor lorem
-							<ol>
-								<li>Facilisis in pretium nisl aliquet</li>
+									<li>Nulla volutpat aliquam velit</li>
 
-								<li>Nulla volutpat aliquam velit</li>
+									<li>Phasellus iaculis neque</li>
 
-								<li>Phasellus iaculis neque</li>
+									<li>Purus sodales ultricies</li>
+								</ol>
+							</li>
 
-								<li>Purus sodales ultricies</li>
-							</ol>
-						</li>
+							<li>Vestibulum laoreet porttitor sem</li>
 
-						<li>Vestibulum laoreet porttitor sem</li>
-
-						<li>Ac tristique libero volutpat at</li>
-					</ol>
+							<li>Ac tristique libero volutpat at</li>
+						</ol>
+					</div>
 				</div>
 			</div>
 
-			<h1 class="heading">Buttons</h1>
+			<h3>Text colors</h3>
 
 			<div class="row">
 				<div class="col-12">
-					<button class="button">Button</button>
-					<a class="button" href="#" onclick="return false;">Link</a>
-					<input class="button" type="submit" value="Submit">
+					<p class="cell">
+						<span class="_color-background">Background</span>
+
+						<span class="_color-primary">Primary</span>
+
+						<span class="_color-secondary">Secondary</span>
+
+						<span class="_color-mute">Mute</span>
+
+						<span class="_color-selection">Selection</span>
+
+						<span class="_color-focus">Focus</span>
+
+						<span class="_color-link">Link</span>
+
+						<span class="_color-font">Font</span>
+
+						<span class="_color-heading">Heading</span>
+
+						<span class="_color-default">Default</span>
+
+						<span class="_color-success">Success</span>
+
+						<span class="_color-info">Info</span>
+
+						<span class="_color-warning">Warning</span>
+
+						<span class="_color-error">Error</span>
+					</p>
 				</div>
+			</div>
+
+			<h3>Background colors</h3>
+
+			<div class="row">
+				<div class="col-4">
+					<div class="_bg-primary _pt _pb _pl _pr">
+						<span class="_color-background">Primary</span>
+					</div>
+
+					<div class="_bg-secondary _pt _pb _pl _pr">
+						<span class="_color-background">Secondary</span>
+					</div>
+
+					<div class="_bg-mute _pt _pb _pl _pr">
+						<span class="_color-background">Mute</span>
+					</div>
+
+					<div class="_bg-selection _pt _pb _pl _pr">
+						<span class="_color-background">Selection</span>
+					</div>
+
+					<div class="_bg-focus _pt _pb _pl _pr">
+						<span class="_color-background">Focus</span>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="_bg-heading _pt _pb _pl _pr">
+						<span class="_color-background">Heading</span>
+					</div>
+
+					<div class="_bg-default _pt _pb _pl _pr">
+						Default
+					</div>
+
+					<div class="_bg-font _pt _pb _pl _pr">
+						<span class="_color-background">Font</span>
+					</div>
+
+					<div class="_bg-link _pt _pb _pl _pr">
+						<span class="_color-background">Link</span>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="_bg-success _pt _pb _pl _pr">
+						<span class="_color-background">Success</span>
+					</div>
+
+					<div class="_bg-info _pt _pb _pl _pr">
+						<span class="_color-background">Info</span>
+					</div>
+
+					<div class="_bg-warning _pt _pb _pl _pr">
+						<span class="_color-background">Warning</span>
+					</div>
+
+					<div class="_bg-error _pt _pb _pl _pr">
+						<span class="_color-background">Error</span>
+					</div>
+				</div>
+			</div>
+
+			<h3>Images</h3>
+
+			<div class="row">
+				<div class="col-3">
+					<div class="cell">
+						<p>
+							<img class="_image-left" src="img/100x100.png">
+							Left aligned image
+						</p>
+					</div>
+				</div>
+
+				<div class="col-3">
+					<div class="cell">
+						<p>
+							<img class="_image-right" src="img/100x100.png">
+							Right aligned image
+						</p>
+					</div>
+				</div>
+
+				<div class="col-3">
+					<div class="cell">
+						<p>
+							<img class="_image-center" src="img/100x100.png">
+						</p>
+
+						<p>Center aligned image</p>
+					</div>
+				</div>
+
+				<div class="col-3">
+					<div class="cell">
+						<p>
+							<img class="_image-fill" src="img/200x200.png">
+						</p>
+
+						<p>Filled image</p>
+					</div>
+				</div>
+			</div>
+
+			<h1 class="heading">Forms</h1>
+
+			<h3>Buttons</h3>
+
+			<div class="cell">
+				<button class="button _mb-xs">Button</button>
+
+				<a class="button _mb-xs" href="#" onclick="return false;">Link</a>
+
+				<input class="button _mb-xs" type="submit" value="Submit">
 			</div>
 
 			<h3>Buttons colors</h3>
 
-			<div class="row">
-				<div class="col-12">
-					<button class="button">Default</button>
-					<button class="button button-primary">Primary</button>
-					<button class="button button-secondary">Secondary</button>
-					<button class="button button-success">Success</button>
-					<button class="button button-warning">Warning</button>
-					<button class="button button-error">Error</button>
-					<button class="button button-info">Info</button>
-					<button class="button button-link">Link</button>
-				</div>
+			<div class="cell">
+				<button class="button _mb-xs">Default</button>
+
+				<button class="button _primary _mb-xs">Primary</button>
+
+				<button class="button _secondary _mb-xs">Secondary</button>
+
+				<button class="button _success _mb-xs">Success</button>
+
+				<button class="button _warning _mb-xs">Warning</button>
+
+				<button class="button _error _mb-xs">Error</button>
+
+				<button class="button _info _mb-xs">Info</button>
+
+				<button class="button _link">Link</button>
 			</div>
 
-			<h3>Buttons z-depth-1</h3>
+			<h3>Buttons z depth</h3>
 
-			<div class="row">
-				<div class="col-12">
-					<button class="button z-depth-1">Default</button>
-					<button class="button z-depth-1 button-primary">Primary</button>
-					<button class="button z-depth-1 button-secondary">Secondary</button>
-					<button class="button z-depth-1 button-success">Success</button>
-					<button class="button z-depth-1 button-warning">Warning</button>
-					<button class="button z-depth-1 button-error">Error</button>
-					<button class="button z-depth-1 button-info">Info</button>
-					<button class="button z-depth-1 button-link">Link</button>
-				</div>
+			<div class="cell">
+				<button class="button _mb-xs">z depth 0</button>
+
+				<button class="button _depth-1 _mb-xs">z depth 1</button>
+
+				<button class="button _depth-2 _mb-xs">z depth 2</button>
+
+				<button class="button _depth-3 _mb-xs">z depth 3</button>
+
+				<button class="button _depth-4 _mb-xs">z depth 4</button>
+
+				<button class="button _depth-5 _mb-xs">z depth 5</button>
 			</div>
 
 			<h3>Buttons disabled</h3>
 
-			<div class="row">
-				<div class="col-12">
-					<button class="button disabled">Default</button>
-					<button class="button button-primary disabled">Primary</button>
-					<button class="button button-secondary disabled">Secondary</button>
-					<button class="button button-success disabled">Success</button>
-					<button class="button button-warning disabled">Warning</button>
-					<button class="button button-error disabled">Error</button>
-					<button class="button button-info disabled">Info</button>
-					<button class="button button-link disabled">Link</button>
-				</div>
+			<div class="cell">
+				<button class="button _mb-xs" disabled>Default</button>
+
+				<button class="button _primary _mb-xs" disabled>Primary</button>
+
+				<button class="button _secondary _mb-xs" disabled>Secondary</button>
+
+				<button class="button _success _mb-xs" disabled>Success</button>
+
+				<button class="button _warning _mb-xs" disabled>Warning</button>
+
+				<button class="button _error _mb-xs" disabled>Error</button>
+
+				<button class="button _info _mb-xs" disabled>Info</button>
+
+				<button class="button _link" disabled>Link</button>
 			</div>
 
 			<h3>Buttons active</h3>
 
-			<div class="row">
-				<div class="col-12">
-					<button class="button active">Default</button>
-					<button class="button button-primary active">Primary</button>
-					<button class="button button-secondary active">Secondary</button>
-					<button class="button button-success active">Success</button>
-					<button class="button button-warning active">Warning</button>
-					<button class="button button-error active">Error</button>
-					<button class="button button-info active">Info</button>
-					<button class="button button-link active">Link</button>
+			<div class="cell">
+				<button class="button _active _mb-xs">Default</button>
+
+				<button class="button _primary _active _mb-xs">Primary</button>
+
+				<button class="button _secondary _active _mb-xs">Secondary</button>
+
+				<button class="button _success _active _mb-xs">Success</button>
+
+				<button class="button _warning _active _mb-xs">Warning</button>
+
+				<button class="button _error _active _mb-xs">Error</button>
+
+				<button class="button _info _active _mb-xs">Info</button>
+
+				<button class="button _link _active">Link</button>
+			</div>
+
+			<h3>Buttons active + disabled</h3>
+
+			<div class="cell">
+				<button class="button _active _mb-xs" disabled>Default</button>
+
+				<button class="button _primary _active _mb-xs" disabled>Primary</button>
+
+				<button class="button _secondary _active _mb-xs" disabled>Secondary</button>
+
+				<button class="button _success _active _mb-xs" disabled>Success</button>
+
+				<button class="button _warning _active _mb-xs" disabled>Warning</button>
+
+				<button class="button _error _active _mb-xs" disabled>Error</button>
+
+				<button class="button _info _active _mb-xs" disabled>Info</button>
+
+				<button class="button _link _active" disabled>Link</button>
+			</div>
+
+			<h3>Buttons sizes</h3>
+
+			<div class="cell">
+				<button class="button _depth-1 _small _mb-xs">Button small</button>
+
+				<button class="button _depth-1 _medium _mb-xs">Button medium</button>
+
+				<button class="button _depth-1 _large _mb-xs">Button large</button>
+
+				<button class="button _depth-1 _huge">Button huge</button>
+			</div>
+
+			<h3>Float buttons</h3>
+
+			<div class="cell">
+				<button class="button _float _depth-1 _small"><i class="fa fa-plus"></i></button>
+
+				<button class="button _float _depth-1 _medium"><i class="fa fa-plus"></i></button>
+
+				<button class="button _float _depth-1 _large"><i class="fa fa-plus"></i></button>
+
+				<button class="button _float _depth-1 _huge"><i class="fa fa-plus"></i></button>
+
+				<button class="button _float _depth-1 _primary"><i class="fa fa-plus"></i></button>
+
+				<button class="button _float _depth-1 _secondary"><i class="fa fa-plus"></i></button>
+
+				<button class="button _float _depth-1 _success"><i class="fa fa-plus"></i></button>
+
+				<button class="button _float _depth-1 _warning"><i class="fa fa-plus"></i></button>
+
+				<button class="button _float _depth-1 _error"><i class="fa fa-plus"></i></button>
+
+				<button class="button _float _depth-1 _info"><i class="fa fa-plus"></i></button>
+			</div>
+
+			<h3>Input text</h3>
+
+			<div class="cell">
+				<div class="row _mb">
+					<div class="col-3">
+						<input class="text _mb-xs" type="text" placeholder="Placeholder">
+					</div>
+
+					<div class="col-3">
+						<input class="text _primary _mb-xs" type="text" value="Primary">
+					</div>
+
+					<div class="col-3">
+						<input class="text _secondary _mb-xs" type="text" value="Secondary">
+					</div>
+
+					<div class="col-3">
+						<input class="text _success" type="text" value="Success">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-3">
+						<input class="text _warning _mb-xs" type="text" value="Warning">
+					</div>
+
+					<div class="col-3">
+						<input class="text _error _mb-xs" type="text" value="Error">
+					</div>
+
+					<div class="col-3">
+						<input class="text _info _mb-xs" type="text" value="Info">
+					</div>
+
+					<div class="col-3">
+						<input class="text" type="text" value="Disabled" disabled>
+					</div>
 				</div>
 			</div>
 
-			<h3>Buttons active and disabled</h3>
+			<h3>Input text sizes</h3>
 
-			<div class="row">
-				<div class="col-12">
-					<button class="button active disabled">Default</button>
-					<button class="button button-primary active disabled">Primary</button>
-					<button class="button button-secondary active disabled">Secondary</button>
-					<button class="button button-success active disabled">Success</button>
-					<button class="button button-warning active disabled">Warning</button>
-					<button class="button button-error active disabled">Error</button>
-					<button class="button button-info active disabled">Info</button>
-					<button class="button button-link active disabled">Link</button>
+			<div class="cell">
+				<div class="row">
+					<div class="col-3">
+						<input class="text _small _mb-xs" type="text" value="Small">
+					</div>
+
+					<div class="col-3">
+						<input class="text _medium _mb-xs" type="text" value="Medium">
+					</div>
+
+					<div class="col-3">
+						<input class="text _large _mb-xs" type="text" value="Large">
+					</div>
+
+					<div class="col-3">
+						<input class="text _huge" type="text" value="Huge">
+					</div>
 				</div>
 			</div>
 
-			<h3>Buttons size</h3>
+			<h3>Textarea</h3>
 
-			<div class="row">
-				<div class="col-12">
-					<button class="button z-depth-1 small">Button small</button>
-					<button class="button z-depth-1 medium">Button medium</button>
-					<button class="button z-depth-1 large">Button large</button>
-					<button class="button z-depth-1 huge">Button huge</button>
+			<div class="cell">
+				<div class="row _mb">
+					<div class="col-3">
+						<textarea class="textarea _mb-xs" placeholder="Placeholder"></textarea>
+					</div>
+
+					<div class="col-3">
+						<textarea class="textarea _primary _mb-xs">Primary</textarea>
+					</div>
+
+					<div class="col-3">
+						<textarea class="textarea _secondary _mb-xs">Secondary</textarea>
+					</div>
+
+					<div class="col-3">
+						<textarea class="textarea _success">Success</textarea>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-3">
+						<textarea class="textarea _error _mb-xs">Error</textarea>
+					</div>
+
+					<div class="col-3">
+						<textarea class="textarea _warning _mb-xs">Warning</textarea>
+					</div>
+
+					<div class="col-3">
+						<textarea class="textarea _info _mb-xs">Info</textarea>
+					</div>
+
+					<div class="col-3">
+						<textarea class="textarea" disabled="disabled">Disabled</textarea>
+					</div>
 				</div>
 			</div>
 
-			<h3>Buttons float</h3>
+			<h3>Textarea sizes</h3>
 
-			<div class="row">
-				<div class="col-12">
-					<button class="button button-float z-depth-1 small">+</button>
-					<button class="button button-float z-depth-1 medium">+</button>
-					<button class="button button-float z-depth-1 large">+</button>
-					<button class="button button-float z-depth-1 huge">+</button>
+			<div class="cell">
+				<div class="row">
+					<div class="col-3">
+						<textarea class="textarea _small _mb-xs">Small</textarea>
+					</div>
+
+					<div class="col-3">
+						<textarea class="textarea _medium _mb-xs">Medium</textarea>
+					</div>
+
+					<div class="col-3">
+						<textarea class="textarea _large _mb-xs">Large</textarea>
+					</div>
+
+					<div class="col-3">
+						<textarea class="textarea _huge">Huge</textarea>
+					</div>
 				</div>
 			</div>
 
-			<h1 class="heading">Text</h1>
+			<h3>Textarea resizer</h3>
 
-			<div class="row">
-				<div class="col-2">
-					<input class="text" type="text" placeholder="Placeholder">
-				</div>
+			<div class="cell">
+				<div class="row">
+					<div class="col-3">
+						<textarea class="textarea _noresize _mb-xs">Noresize</textarea>
+					</div>
 
-				<div class="col-2">
-					<input class="text text-secondary" type="text" value="Secondary">
-				</div>
+					<div class="col-3">
+						<textarea class="textarea _vertical _mb-xs">Vertical (default)</textarea>
+					</div>
 
-				<div class="col-2">
-					<input class="text text-success" type="text" value="Success">
-				</div>
+					<div class="col-3">
+						<textarea class="textarea _horizontal _mb-xs">Horizontal</textarea>
+					</div>
 
-				<div class="col-2">
-					<input class="text text-error" type="text" value="Error">
-				</div>
-
-				<div class="col-2">
-					<input class="text text-warning" type="text" value="Warning">
-				</div>
-
-				<div class="col-2">
-					<input class="text" type="text" value="Disabled" disabled="disabled">
+					<div class="col-3">
+						<textarea class="textarea _noresize">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+					</div>
 				</div>
 			</div>
 
-			<h3>Text size</h3>
+			<h3>Select</h3>
 
-			<div class="row">
-				<div class="col-3">
-					<input class="text small" type="text" value="Small">
+			<div class="cell">
+				<div class="row _mb">
+					<div class="col-3">
+						<select class="select _mb-xs">
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _primary _mb-xs">
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _secondary _mb-xs">
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _success">
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 				</div>
 
-				<div class="col-3">
-					<input class="text medium" type="text" value="Medium">
+				<div class="row _mb">
+					<div class="col-3">
+						<select class="select _error _mb-xs">
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _warning _mb-xs">
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _info _mb-xs">
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select" disabled="disabled">
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 				</div>
 
-				<div class="col-3">
-					<input class="text large" type="text" value="Large">
+				<div class="row _mb">
+					<div class="col-3">
+						<select class="select _mb-xs" multiple>
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _primary _mb-xs" multiple>
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _secondary _mb-xs" multiple>
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _success" multiple>
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 				</div>
 
-				<div class="col-3">
-					<input class="text huge" type="text" value="Huge">
-				</div>
-			</div>
+				<div class="row">
+					<div class="col-3">
+						<select class="select _error _mb-xs" multiple>
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 
-			<h1 class="heading">Textarea</h1>
+					<div class="col-3">
+						<select class="select _warning _mb-xs" multiple>
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 
-			<div class="row">
-				<div class="col-2">
-					<textarea class="textarea" placeholder="Placeholder"></textarea>
-				</div>
+					<div class="col-3">
+						<select class="select _info _mb-xs" multiple>
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 
-				<div class="col-2">
-					<textarea class="textarea textarea-secondary">Secondary</textarea>
-				</div>
-
-				<div class="col-2">
-					<textarea class="textarea textarea-success">Success</textarea>
-				</div>
-
-				<div class="col-2">
-					<textarea class="textarea textarea-error">Error</textarea>
-				</div>
-
-				<div class="col-2">
-					<textarea class="textarea textarea-warning">Warning</textarea>
-				</div>
-
-				<div class="col-2">
-					<textarea class="textarea" disabled="disabled">Disabled</textarea>
-				</div>
-			</div>
-
-			<h3>Textarea size</h3>
-
-			<div class="row">
-				<div class="col-3">
-					<textarea class="textarea small noresize">Small noresize</textarea>
-				</div>
-
-				<div class="col-3">
-					<textarea class="textarea medium vertical">Medium vertical</textarea>
-				</div>
-
-				<div class="col-3">
-					<textarea class="textarea large horizontal">Large horizontal</textarea>
-				</div>
-
-				<div class="col-3">
-					<textarea class="textarea huge">Huge</textarea>
-				</div>
-			</div>
-
-			<h1 class="heading">Select</h1>
-
-			<div class="row">
-				<div class="col-2">
-					<select class="select">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="select select-secondary">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="select select-success">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="select select-error">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="select select-warning">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="select" disabled="disabled">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-			</div>
-
-			<h3>Select size</h3>
-
-			<div class="row">
-				<div class="col-3">
-					<select class="select small">
-						<option>Small</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-3">
-					<select class="select medium">
-						<option>Medium</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-3">
-					<select class="select large">
-						<option>Large</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-3">
-					<select class="select huge">
-						<option>Huge</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
+					<div class="col-3">
+						<select class="select" disabled multiple>
+							<option>Option 1</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 				</div>
 			</div>
 
-			<h3>Select multiple</h3>
+			<h3>Select sizes</h3>
 
-			<div class="row">
-				<div class="col-2">
-					<select class="select" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
+			<div class="cell">
+				<div class="row _mb">
+					<div class="col-3">
+						<select class="select _small _mb-xs">
+							<option>Small</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _medium _mb-xs">
+							<option>Medium</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _large _mb-xs">
+							<option>Large</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
+
+					<div class="col-3">
+						<select class="select _huge">
+							<option>Huge</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 				</div>
 
-				<div class="col-2">
-					<select class="select select-secondary" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
+				<div class="row">
+					<div class="col-3">
+						<select class="select _small _mb-xs" multiple>
+							<option>Small</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 
-				<div class="col-2">
-					<select class="select select-success" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
+					<div class="col-3">
+						<select class="select _medium _mb-xs" multiple>
+							<option>Medium</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 
-				<div class="col-2">
-					<select class="select select-error" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
+					<div class="col-3">
+						<select class="select _large _mb-xs" multiple>
+							<option>Large</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 
-				<div class="col-2">
-					<select class="select select-warning" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select class="select" disabled="disabled" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-			</div>
-
-			<h3>Select multiple size</h3>
-
-			<div class="row">
-				<div class="col-3">
-					<select class="select small" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-3">
-					<select class="select medium" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-3">
-					<select class="select large" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
-				</div>
-
-				<div class="col-3">
-					<select class="select huge" multiple="multiple">
-						<option>Option 1</option>
-						<option>Option 2</option>
-						<option>Option 3</option>
-					</select>
+					<div class="col-3">
+						<select class="select _huge" multiple>
+							<option>Huge</option>
+							<option>Option 2</option>
+							<option>Option 3</option>
+						</select>
+					</div>
 				</div>
 			</div>
 
-			<h1 class="heading">Checkbox</h1>
+			<h3>Checkbox</h3>
 
-			<div class="row">
-				<div class="col-2">
-					<input class="checkbox" id="checkbox1" type="checkbox">
-					<label for="checkbox1">Unchecked</label>
-				</div>
+			<div class="cell">
+				<div class="row">
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="checkbox" type="checkbox">
+							<span class="">Unchecked</span>
+						</label>
+					</div>
 
-				<div class="col-2">
-					<input class="checkbox" id="checkbox2" type="checkbox" checked="checked">
-					<label for="checkbox2">Checked</label>
-				</div>
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="checkbox" type="checkbox" checked>
+							<span class="">Checked</span>
+						</label>
+					</div>
 
-				<div class="col-2">
-					<input class="checkbox" id="checkbox3" type="checkbox" disabled="disabled">
-					<label for="checkbox3">Disabled</label>
-				</div>
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="checkbox" type="checkbox" disabled>
+							<span class="">Disabled</span>
+						</label>
+					</div>
 
-				<div class="col-2">
-					<input class="checkbox" id="checkbox4" type="checkbox" disabled="disabled" checked="checked">
-					<label for="checkbox4">Checked disabled</label>
-				</div>
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="checkbox" type="checkbox" checked disabled>
+							<span class="">Checked &amp; disabled</span>
+						</label>
+					</div>
 
-				<div class="col-2">
-					<input class="checkbox" id="checkbox5" type="checkbox" checked="checked">
-					<label for="checkbox5">Multilined checkbox multilined checkbox</label>
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="checkbox" type="checkbox" checked>
+							<span class="">Multilined checkbox multilined checkbox</span>
+						</label>
+					</div>
+
+					<div class="col-2">
+						<input class="checkbox" type="checkbox">
+
+						<input class="checkbox" type="checkbox" checked>
+
+						<input class="checkbox" type="checkbox">
+
+						<input class="checkbox" type="checkbox" checked>
+
+						<input class="checkbox" type="checkbox">
+
+						<input class="checkbox" type="checkbox" checked>
+					</div>
 				</div>
 			</div>
 
-			<h1 class="heading">Radio</h1>
+			<h3>Radio</h3>
 
-			<div class="row">
-				<div class="col-2">
-					<input class="radio" id="radio1" type="radio" name="first">
-					<label for="radio1">Unchecked</label>
+			<div class="cell">
+				<div class="row">
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="radio" type="radio" name="radio">
+							<span class="">Unchecked</span>
+						</label>
+					</div>
+
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="radio" type="radio" name="radio" checked>
+							<span class="">Checked</span>
+						</label>
+					</div>
+
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="radio" type="radio" disabled>
+							<span class="">Disabled</span>
+						</label>
+					</div>
+
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="radio" type="radio" checked disabled>
+							<span class="">Checked &amp; disabled</span>
+						</label>
+					</div>
+
+					<div class="col-2 _mb-xs">
+						<label>
+							<input class="radio" type="radio" checked>
+							<span class="">Multilined radio multilined radio</span>
+						</label>
+					</div>
+
+					<div class="col-2">
+						<input class="radio" type="radio" name="r1">
+
+						<input class="radio" type="radio" name="r1" checked>
+
+						<input class="radio" type="radio" name="r2">
+
+						<input class="radio" type="radio" name="r2" checked>
+
+						<input class="radio" type="radio" name="r3">
+
+						<input class="radio" type="radio" name="r3" checked>
+					</div>
+				</div>
+			</div>
+
+			<h3>Label</h3>
+
+			<div class="cell">
+				<div class="row">
+					<div class="col-6 _mb-xs">
+						<div class="row _mb">
+							<div class="col-4 col-md-5 col-sm-5">
+								<label class="label" for="i1">Default label</label>
+							</div>
+
+							<div class="col-8 col-md-7 col-sm-7">
+								<input class="text" id="i1" type="text">
+							</div>
+						</div>
+
+						<div class="row _mb">
+							<div class="col-4 col-md-5 col-sm-5">
+								<label class="label _disabled" for="i2">Disabled label</label>
+							</div>
+
+							<div class="col-8 col-md-7 col-sm-7">
+								<input class="text" id="i2" type="text" disabled>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-4 col-md-5 col-sm-5">
+								<label class="label" for="i3">Multiline label Lorem ipsum dolor sit amet, consectetur adipisicing elit</label>
+							</div>
+
+							<div class="col-8 col-md-7 col-sm-7">
+								<input class="text" id="i3" type="text">
+							</div>
+						</div>
+					</div>
+
+					<div class="col-6">
+						<div class="row _mb">
+							<div class="col-4 col-md-5 col-sm-5">
+								<label class="label _success" for="i10">Success label</label>
+							</div>
+
+							<div class="col-8 col-md-7 col-sm-7">
+								<input class="text _success" id="i10" type="text">
+							</div>
+						</div>
+
+						<div class="row _mb">
+							<div class="col-4 col-md-5 col-sm-5">
+								<label class="label _info" for="i11">Info label</label>
+							</div>
+
+							<div class="col-8 col-md-7 col-sm-7">
+								<input class="text _info" id="i11" type="text">
+							</div>
+						</div>
+
+						<div class="row _mb">
+							<div class="col-4 col-md-5 col-sm-5">
+								<label class="label _warning" for="i12">Warning label</label>
+							</div>
+
+							<div class="col-8 col-md-7 col-sm-7">
+								<input class="text _warning" id="i12" type="text">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-4 col-md-5 col-sm-5">
+								<label class="label _error" for="i13">Error label</label>
+							</div>
+
+							<div class="col-8 col-md-7 col-sm-7">
+								<input class="text _error" id="i13" type="text">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3>Label sizes</h3>
+
+			<div class="cell">
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-4">
+						<label class="label _small" for="i4">Small label</label>
+					</div>
+
+					<div class="col-5 col-md-6 col-sm-6">
+						<input class="text _small" id="i4" type="text">
+					</div>
 				</div>
 
-				<div class="col-2">
-					<input class="radio" id="radio2" type="radio" checked="checked" name="first">
-					<label for="radio2">Checked</label>
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-4">
+						<label class="label _medium" for="i5">Medium label</label>
+					</div>
+
+					<div class="col-5 col-md-6 col-sm-6">
+						<input class="text _medium" id="i5" type="text">
+					</div>
 				</div>
 
-				<div class="col-2">
-					<input class="radio" id="radio3" type="radio" disabled="disabled" name="second">
-					<label for="radio3">Disabled</label>
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-4">
+						<label class="label _large" for="i6">Large label</label>
+					</div>
+
+					<div class="col-5 col-md-6 col-sm-6">
+						<input class="text _large" id="i6" type="text">
+					</div>
 				</div>
 
-				<div class="col-2">
-					<input class="radio" id="radio4" type="radio" disabled="disabled" checked="checked" name="second">
-					<label for="radio4">Checked disabled</label>
+				<div class="row">
+					<div class="col-2 col-md-3 col-sm-4">
+						<label class="label _huge" for="i7">Huge label</label>
+					</div>
+
+					<div class="col-5 col-md-6 col-sm-6">
+						<input class="text _huge" id="i7" type="text">
+					</div>
+				</div>
+			</div>
+
+			<h3>Annotation</h3>
+
+			<div class="cell">
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label" for="i20">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text" id="i20" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation">
+							Default annotation
+						</div>
+					</div>
 				</div>
 
-				<div class="col-2">
-					<input class="radio" id="radio5" type="radio" checked="checked" name="third">
-					<label for="radio5">Multilined checkbox multilined checkbox</label>
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label" for="i21">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text" id="i21" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation">
+							Multiline annotation Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _success" for="i22">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _success" id="i22" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation _success">
+							Success annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _info" for="i23">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _info" id="i23" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation _info">
+							Info annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _warning" for="i24">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _warning" id="i24" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation _warning">
+							Warning annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _error" for="i25">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _error" id="i25" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation _error">
+							Error annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label" for="i26">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text" id="i26" type="text">
+
+						<div class="annotation _vertical">
+							Vertical annotation
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3>Annotation sizes</h3>
+
+			<div class="cell">
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _small" for="i30">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _small" id="i30" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation _small">
+							Small annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _medium" for="i31">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _medium" id="i31" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation _medium">
+							Medium annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _large" for="i32">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _large" id="i32" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation _large">
+							Large annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _huge" for="i33">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _huge" id="i33" type="text">
+					</div>
+
+					<div class="col-6 col-md-4 col-sm-4">
+						<div class="annotation _huge">
+							Huge annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _small" for="i34">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _small" id="i34" type="text">
+
+						<div class="annotation _vertical _small">
+							Small vertical annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _medium" for="i35">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _medium" id="i35" type="text">
+
+						<div class="annotation _vertical _medium">
+							Medium vertical annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row _mb">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _large" for="i36">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _large" id="i36" type="text">
+
+						<div class="annotation _vertical _large">
+							Large vertical annotation
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-2 col-md-3 col-sm-3">
+						<label class="label _huge" for="i37">Label</label>
+					</div>
+
+					<div class="col-4 col-md-5 col-sm-5">
+						<input class="text _huge" id="i37" type="text">
+
+						<div class="annotation _vertical _huge">
+							Huge vertical annotation
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3>Notice</h3>
+
+			<div class="cell">
+				<div class="row">
+					<div class="col-6">
+						<div class="notice">Default notice with <a href="javascript:void()">link</a></div>
+
+						<div class="notice _mb-xs">
+							Multiline notice. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat.
+						</div>
+					</div>
+
+					<div class="col-6">
+						<div class="notice _success">Success notice</div>
+
+						<div class="notice _info">Info notice</div>
+
+						<div class="notice _warning">Warning notice</div>
+
+						<div class="notice _error">Error notice</div>
+					</div>
 				</div>
 			</div>
 
 			<h1 class="heading">Table</h1>
 
-			<h3>Simple table</h3>
-
-			<table>
+			<table class="table">
 				<thead>
 					<tr>
 						<th>Id</th>
@@ -849,565 +1591,136 @@
 
 					<tr>
 						<td>4</td>
+
 						<td>Hello world</td>
-						<td>The content</td>
+
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</td>
+
 						<td>Publish</td>
 					</tr>
 
 					<tr>
 						<td>5</td>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
 
-					<tr>
-						<td>6</td>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
-				</tbody>
-			</table>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.
+						</td>
 
-			<h3>Table stripped</h3>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						</td>
 
-			<table class="stripped">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Title</th>
-						<th>Content</th>
-						<th>Status</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr>
-						<th>1</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
-
-					<tr>
-						<th>2</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
-
-					<tr>
-						<th>3</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
-
-					<tr>
-						<th>4</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
-
-					<tr>
-						<th>5</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
-
-					<tr>
-						<th>6</th>
-						<td>Hello world</td>
-						<td>The content</td>
 						<td>Publish</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<h3>Table bordered</h3>
+			<div class="row">
+				<div class="col-6">
+					<h3>Table striped</h3>
 
-			<table class="bordered">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Title</th>
-						<th>Content</th>
-						<th>Status</th>
-					</tr>
-				</thead>
+					<table class="table _striped">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Title</th>
+								<th>Content</th>
+								<th>Status</th>
+							</tr>
+						</thead>
 
-				<tbody>
-					<tr>
-						<th>1</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
 
-					<tr>
-						<th>2</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
+							<tr>
+								<th>2</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
 
-					<tr>
-						<th>3</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
+							<tr>
+								<th>3</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
 
-					<tr>
-						<th>4</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
+							<tr>
+								<th>4</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
 
-					<tr>
-						<th>5</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
-
-					<tr>
-						<th>6</th>
-						<td>Hello world</td>
-						<td>The content</td>
-						<td>Publish</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<h1 class="heading">Forms</h1>
-
-			<h3>Small form</h3>
-
-			<div class="form">
-				<div class="row">
-					<div class="col-3">
-						<label class="label small" for="login">E-mail</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text small" id="login" type="text" value="mail@example.com">
-					</div>
-
-					<div class="col-3">
-						<div class="annotation small">
-							Please type a correct e-mail address
-						</div>
-					</div>
+							<tr>
+								<th>5</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 
-				<div class="row">
-					<div class="col-3">
-						<label class="label small" for="password">Password</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text small" id="password" type="password" value="password">
-					</div>
-
-					<div class="col-3">
-						<div class="annotation small">
-							Password must contain 6 or more symbol
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-4 offset-3">
-						<button class="button button-primary small">Send</button>
-						<button class="button button-link small">Clear</button>
-					</div>
-				</div>
-			</div>
-
-			<h3>Medium form (default)</h3>
-
-			<div class="form">
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="login1">Login</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text" id="login1" type="text" value="mail@example.com">
-					</div>
-
-					<div class="col-3">
-						<div class="annotation">
-							Please type a correct e-mail address
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="password1">Password</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text" id="password1" type="password" value="password">
-					</div>
-
-					<div class="col-3">
-						<div class="annotation">
-							Password must contain 6 or more symbol
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-4 offset-3">
-						<button class="button button-primary">Send</button>
-						<button class="button button-link">Clear</button>
-					</div>
-				</div>
-			</div>
-
-			<h3>Large form</h3>
-
-			<div class="form">
-				<div class="row">
-					<div class="col-3">
-						<label class="label large" for="login2">Login</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text large" id="login2" type="text" value="mail@example.com">
-					</div>
-
-					<div class="col-3">
-						<div class="annotation large">
-							Please type a correct e-mail address
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label large" for="password2">Password</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text large" id="password2" type="password" value="password">
-					</div>
-
-					<div class="col-3">
-						<div class="annotation large">
-							Password must contain 6 or more symbol
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-4 offset-3">
-						<button class="button button-primary large">Send</button>
-						<button class="button button-link large">Clear</button>
-					</div>
-				</div>
-			</div>
-
-			<h3>Huge form</h3>
-
-			<div class="form">
-				<div class="row">
-					<div class="col-3">
-						<label class="label huge" for="login3">Login</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text huge" id="login3" type="text" value="mail@example.com">
-					</div>
-
-					<div class="col-3">
-						<div class="annotation huge">
-							Please type a correct e-mail address
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label huge" for="password3">Password</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text huge" id="password3" type="password" value="password">
-					</div>
-
-					<div class="col-3">
-						<div class="annotation huge">
-							Password must contain 6 or more symbol
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-4 offset-3">
-						<button class="button button-primary huge">Send</button>
-						<button class="button button-link huge">Clear</button>
-					</div>
-				</div>
-			</div>
-
-			<h3>Horizontal form (default)</h3>
-
-			<div class="form">
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="firstname">Your firstname</label>
-					</div>
-
-					<div class="col-2">
-						<input class="text" id="firstname" type="text" value="Vasya">
-					</div>
-
-					<div class="col-2">
-						<label class="label" for="lastname">Your lastname</label>
-					</div>
-
-					<div class="col-3">
-						<input class="text" id="lastname" type="text" value="Pupkin">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="patronymic">Your patronymic</label>
-					</div>
-
-					<div class="col-7">
-						<input class="text" id="patronymic" type="text" value="Perkosrakovich">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="city">City</label>
-					</div>
-
-					<div class="col-2">
-						<select class="select" id="city">
-							<option>Yakutsk</option>
-							<option>Moscow</option>
-							<option>Bobruysk</option>
-						</select>
-					</div>
-
-					<div class="col-2">
-						<label class="label" for="zipcode">ZIP Code</label>
-					</div>
-
-					<div class="col-3">
-						<input class="text" id="zipcode" type="text" value="677014">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="address">Address</label>
-					</div>
-
-					<div class="col-3">
-						<input class="text" id="address" type="text" value="ul. Krasnopresnyanskaya">
-					</div>
-
-					<div class="col-1">
-						<label class="label" for="house">House</label>
-					</div>
-
-					<div class="col-1">
-						<input class="text" id="house" type="text" value="64/2">
-					</div>
-
-					<div class="col-1">
-						<label class="label" for="apparment">Appartment</label>
-					</div>
-
-					<div class="col-1">
-						<input class="text" id="apparment" type="text" value="14">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="about">About yourself and very very very very long multiline label</label>
-					</div>
-
-					<div class="col-6">
-						<textarea class="textarea" id="about">I am an pizdyuk</textarea>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3 offset-3">
-						<input class="checkbox" id="dog" type="checkbox" checked="checked">
-						<label for="dog">I have a dog</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-4 offset-3">
-						<button class="button button-primary">Save</button>
-					</div>
-				</div>
-			</div>
-
-			<h3>Vertical form</h3>
-
-			<div class="form">
-				<div class="row">
-					<div class="col-2 offset-3">
-						<label class="label label-vertical" for="firstname1">Your firstname</label>
-
-						<input class="text" id="firstname1" type="text" value="Vasya">
-					</div>
-
-					<div class="col-2">
-						<label class="label label-vertical" for="lastname1">Your lastname</label>
-
-						<input class="text" id="lastname1" type="text" value="Pupkin">
-					</div>
-
-					<div class="col-3">
-						<label class="label label-vertical" for="patronymic1">Your patronymic</label>
-
-						<input class="text" id="patronymic1" type="text" value="Perkosrakovich">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-4 offset-3">
-						<label class="label label-vertical" for="city1">City</label>
-
-						<select class="select" id="city1">
-							<option>Yakutsk</option>
-							<option>Moscow</option>
-							<option>Bobruysk</option>
-						</select>
-					</div>
-
-					<div class="col-3">
-						<label class="label label-vertical" for="zipcode1">ZIP Code</label>
-
-						<input class="text" id="zipcode1" type="text" value="677014">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3 offset-3">
-						<label class="label label-vertical" for="address1">Address</label>
-
-						<input class="text" id="address1" type="text" value="ul. Krasnopresnyanskaya">
-					</div>
-
-					<div class="col-2">
-						<label class="label label-vertical" for="house1">House</label>
-
-						<input class="text" id="house1" type="text" value="64/2">
-					</div>
-
-					<div class="col-2">
-						<label class="label label-vertical" for="apparment1">Appartment</label>
-
-						<input class="text" id="apparment1" type="text" value="14">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-7 offset-3">
-						<label class="label label-vertical" for="about1">About yourself and very very very very long multiline label</label>
-
-						<textarea class="textarea" id="about1">I am an pizdyuk</textarea>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3 offset-3">
-						<input class="checkbox" id="dog1" type="checkbox" checked="checked">
-						<label for="dog1">I have a dog</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-4 offset-3">
-						<button class="button button-primary">Save</button>
-					</div>
-				</div>
-			</div>
-
-			<h3>Vertical annotations</h3>
-
-			<div class="form">
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="login5">E-mail</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text" id="login5" type="text" value="mail@example.com">
-
-						<div class="annotation annotation-vertical">
-							Please type correct e-mail address
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="password5">Password</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text text-error" id="password5" type="password" value="password">
-
-						<div class="annotation annotation-vertical annotation-error">
-							Password is incorrect
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="date1">Date</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text text-warning" id="date1" type="date" value="2015-04-04">
-
-						<div class="annotation annotation-vertical annotation-warning">
-							Please type correct date
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-3">
-						<label class="label" for="name22">Name</label>
-					</div>
-
-					<div class="col-4">
-						<input class="text text-success" id="name22" type="text" value="Paskuda">
-
-						<div class="annotation annotation-vertical annotation-success">
-							Name is OK
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-4 offset-3">
-						<button class="button button-primary">Send</button>
-						<button class="button button-link">Clear</button>
-					</div>
+				<div class="col-6">
+					<h3>Table bordered</h3>
+
+					<table class="table _bordered">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Title</th>
+								<th>Content</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<th>1</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
+
+							<tr>
+								<th>2</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
+
+							<tr>
+								<th>3</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
+
+							<tr>
+								<th>4</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
+
+							<tr>
+								<th>5</th>
+								<td>Hello world</td>
+								<td>The content</td>
+								<td>Publish</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

@@ -2,86 +2,110 @@
 
 
 /**
-*	Select.
+*	Выпадающий список.
 */
-%select {
-	@extend %input-default;
-	padding: 0;
+%_select {
+	@extend %_input;
+
+	$ui-height: ui-size('medium');
+	$font-size: calc-ui-font($ui-height);
+
+	padding: calc-ui-padding($ui-height, $font-size, 1.5);
+	padding-right: 18px;
+	line-height: 1.5;
 	cursor: pointer;
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjYxMS41IiBoZWlnaHQ9IjM1Ni42IiB2aWV3Qm94PSIwIDAgNjExLjUgMzU2LjYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYxMS41IDM1Ni42MDYiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDAsOTAwKSI+PHBhdGggZmlsbD0iIzQyNDI0MiIgZD0iTTYxMS41IDg0OS4xYzAtNS4zLTItMTAtNi4xLTE0LjFsLTI4NS40LTI4NS41Yy00LjEtNC4xLTguOC02LjEtMTQuMS02LjEgLTUuMyAwLTEwIDItMTQuMSA2LjFMNi40IDgzNS4xYy00LjEgNC4xLTYuMSA4LjgtNi4xIDE0LjEgMCA1LjMgMiAxMCA2LjEgMTQuMWwzMC42IDMwLjZjNC4xIDQuMSA4LjggNi4xIDE0LjEgNi4xczEwLTIgMTQuMS02LjFsMjQwLjctMjQwLjggMjQwLjcgMjQwLjhjNC4xIDQuMSA4LjggNi4xIDE0LjEgNi4xczEwLTIgMTQuMS02LjFsMzAuNi0zMC42QzYwOS41IDg1OS4yIDYxMS41IDg1NC41IDYxMS41IDg0OS4xeiIvPjwvZz48L3N2Zz4=');
+	background-repeat: no-repeat;
+	background-position: 100% 50%;
+
 	@include scrollbar();
+	@include appearance(none);
+	@include background-size(14px 100%);
 
 	&[multiple] {
+		padding-right: 0;
 		height: 150px;
-		option { background-color: rgba(0,0,0,0); } // Opera 12.10 fix
+		background: none;
+
+		option {
+			background-color: rgba(0,0,0,0); // Opera 12.10 fix
+		}
+
 		@each $name, $ui-height in $ui-sizes {
-			&.#{$name} {
+			&._#{$name} {
 				height: 4 * $ui-height;
 			}
 		}
 	}
 
-	&:focus {
-		padding: 0;
-	}
-
 	@each $name, $ui-height in $ui-sizes {
+		$font-size: calc-ui-font($ui-height);
+		$padding: calc-ui-padding($ui-height, $font-size, 1.5);
+
 		&._#{$name} {
-			padding: 0;
+			padding: calc-ui-padding($ui-height, $font-size, 1.5);
+			padding-right: $font-size + 4px;
+
+			@include background-size($font-size 100%);
 		}
+
 		&._#{$name}:focus {
-			padding: 0;
+			padding-bottom: $padding - 1;
 		}
 	}
 }
 
 
 /**
-*	Select modificator mixin.
+*	Стандартный выпадающий список.
+*	@param {color} $color [false] - цветовой модификатор.
+*	@output Выводит стиль поля ввода многострочного текста.
 */
-@mixin select($color) {
-	@if (override('select')) {
-		@include ui-select($color);
+@mixin _select($color: false) {
+	@if mixin-exists('select') {
+		@include select($color);
 	} @else {
-		border-bottom-color: $color;
+		@extend %_select;
 
-		&:focus {
-			border-bottom: 2px solid $color;
+		@if $color {
+			border-bottom-color: $color;
+
+			&:focus {
+				border-bottom-width: 2px;
+			}
 		}
 	}
 }
 
 
 /**
-*	Select.
+*	Класс выпадающего списка.
 */
 .select {
-	@if (override('select')) {
-		@include ui-select-default();
-	} @else {
-		@extend %select;
+	@include _select();
+
+	&._primary {
+		@include _select(color('primary'));
+	}
+
+	&._secondary {
+		@include _select(color('secondary'));
+	}
+
+	&._success {
+		@include _select(color('success'));
+	}
+
+	&._warning {
+		@include _select(color('warning'));
+	}
+
+	&._error {
+		@include _select(color('error'));
+	}
+
+	&._info {
+		@include _select(color('info'));
 	}
 }
 
-.select._primary {
-	@include select(color('primary'));
-}
-
-.select._secondary {
-	@include select(color('secondary'));
-}
-
-.select._success {
-	@include select(color('success'));
-}
-
-.select._warning {
-	@include select(color('warning'));
-}
-
-.select._error {
-	@include select(color('error'));
-}
-
-.select._info {
-	@include select(color('info'));
-}
