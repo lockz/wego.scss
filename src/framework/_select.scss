@@ -11,6 +11,7 @@
 	$font-size: calc-ui-font($ui-height);
 
 	padding: calc-ui-padding($ui-height, $font-size, 1.5);
+	padding-left: 0;
 	padding-right: 18px;
 	line-height: 1.5;
 	cursor: pointer;
